@@ -1,0 +1,5 @@
+我要先commit 无论是pull还是push 方法有两个
+commit相当于
+在view---tool windows---version control里面可以commit  后面的commit的时候写的备注是告诉我们什么时候做的什么事情 所以一定要写 让自己和别人知道
+
+VCS-Git 里面有commit file push pull 无论是push 还是 pull 都是先commit 然后pull或者push
