@@ -1,0 +1,47 @@
+1.  two way to realize the binary search
+        recursion
+        while loop
+2.  recursion will use the stack space in the memory
+    stack space is constant which will help to realize function so we should avoid stack overflow
+3.
+    =======return first position=======
+    while(start + 1 < end)
+        above means start next to end , then exit the loop;
+    int mid = (end - start) / 2 + start;
+        above is the common way for the while loop condition
+    if(t <= nums[mid]){
+        end = mid;
+    }else{
+        start = mid
+    }
+
+    //double check
+    if(nums[start] == t) return start;
+    if(nums[end] == t) return end;
+    return -1;//t is not in the array nums;
+
+4.
+    =======return last position=======
+    while(start + 1 < end)
+        above means start next to end , then exit the loop;
+    int mid = (end - start) / 2 + start;
+        above is the common way for the while loop condition
+    if(t >= nums[mid]){
+        start = mid;
+    }else{
+        end = mid
+    }
+
+    //double check
+    if(nums[end] == t) return end;
+    if(nums[start] == t) return start;
+    return -1;//t is not in the array nums;
+
+5.
+    in an infinity/big sorted array
+
+    sovle:
+    every time * 2 till the result > t
+    then
+    eg. 2k > t ...so start = k and end = 2k
+    (I can find 2k in the logk time)

@@ -1,0 +1,33 @@
+Task List
+
+Please feel free to do these tasks in any order, but take note that they are
+listed in the order your team has prioritized completing them.
+
+Reminder that you are NOT expected to complete all tasks in 1 hour. You are
+expected to write clean, readable code. Remember to add comments explaining
+what you were working on if you run out of time in the middle of a task.
+
+1.  Add the method to Neighborhood.java with the prototype defined in our
+    design document:
+      List<CompletePlaceData> getPlaces(LatLng latLng, int maxResults);
+    getPlaces(...) takes in a latLng and returns a list of at most maxResults
+    CompletePlaceData for the places closest to latLng. Note that you will need
+    to define the class CompletePlaceData, which should include all of the data
+    in PlaceData, plus the string returned by ImageServer. Your method can use
+    any of the methods exposed by PlaceDataServer and ImageServer, which you can
+    use directly as libraries.
+
+2.  You notice that there seems to be something wrong with PlaceDataServer's
+    getNearbyPlaces(...) method. When you ask the engineer that runs PDS about
+    it, they tell you they know it's broken, but don't have the bandwidth to
+    fix it right now. Fix the implementation for getNearbyPlaces(...). If your
+    solution is not optimal, consider adding comments on what you could change
+    to make it more efficient. Additionally, consider adding test cases to
+    Runner so that you could catch a regression in the future.
+
+3.  Once getNearbyPlaces(...) is fixed, it will be expensive to call every time
+    a user reloads the page. Add the cache talked about in the design document
+    (Option C) -- your cache should store the data received for a given LatLng.
+    You are welcome to make this cache implementation as simple or complex as
+    you like, but you are encouraged to make sure it is well documented and
+    appropriately decomposed.
