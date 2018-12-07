@@ -9,6 +9,7 @@ public class StoresAndHouses {
     public int[] minDistance(int[] houses , int[] stores){
         int n = stores.length;
         int[][] s = new int[n][2];
+        //第一位放的是stores的编号 ， 第二位放的是store的位置
         for(int i = 0 ; i < n ; ++i){
             s[i][0] = i;
             s[i][1] = stores[i];
