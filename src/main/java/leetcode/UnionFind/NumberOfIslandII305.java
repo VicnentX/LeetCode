@@ -81,6 +81,45 @@ public class NumberOfIslandII305 {
         }
         return ret;
     }
+
+    public List<Integer> numIslands2Optimaize(int m, int n, int[][] positions) {
+        List<Integer> ret = new ArrayList<>();
+        if (m == 0 || n == 0) return ret;
+        int[] roots = new int[m * n];
+        Arrays.fill(roots , -1);
+        int[] size = new int[m * n];
+        Arrays.fill(size , 1);
+        int cnt = 0;
+        for (int[] p : positions) {
+            int pos = p[0] * n + p[1];
+            roots[pos] = pos;
+            ++cnt;
+            for (int[] dir : dirs) {
+                int x = p[0] + dir[0];
+                int y = p[1] + dir[1];
+                int neighbor = x * n + y;
+
+                if (x >= 0 && x < m && y >= 0 && y < n && roots[neighbor] != -1) {
+                    int neighborRoot = find(roots , neighbor);
+                    if (pos != neighborRoot) {
+                        if (size[pos] < size[neighborRoot]) {
+                            roots[pos] = neighborRoot;
+                            pos = neighborRoot;
+                            size[neighborRoot] += size[pos];
+                        } else {
+                            roots[neighborRoot] = pos;
+                            size[pos] += size[neighborRoot];
+                        }
+                        --cnt;
+                    }
+                }
+            }
+            ret.add(cnt);
+        }
+        return ret;
+    }
+
+
     private int find(int[] roots , int id) {
         while (id != roots[id]) {
             roots[id] = roots[roots[id]];
@@ -93,5 +132,7 @@ public class NumberOfIslandII305 {
     public static void main (String[] args) {
         NumberOfIslandII305 ni = new NumberOfIslandII305();
         System.out.println(ni.numIslands2(3 , 3 , new int[][] {{0,0} , {0,1} , {1,2} , {2,1}}));
+        System.out.println(ni.numIslands2Optimaize(3 , 3 , new int[][] {{0,0} , {0,1} , {1,2} , {2,1}}));
+
     }
 }

@@ -87,7 +87,7 @@ public class CalculateThreeQuestion {
                     tokens.add(num);
                     num = "";
                 }
-                if(op.contains(String.valueOf(c))){
+                if(op.contains(String.valueOf(c))){//it means c = + or -
                     if(!stack.isEmpty() && !stack.peek().equals("(")){
                         tokens.add(stack.pop());
                     }
