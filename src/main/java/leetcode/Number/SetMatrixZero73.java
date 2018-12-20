@@ -1,5 +1,47 @@
 package leetcode.Number;
 
+/*
+Given a m x n matrix, if an element is 0, set its entire row and column to 0. Do it in-place.
+
+Example 1:
+
+Input:
+[
+  [1,1,1],
+  [1,0,1],
+  [1,1,1]
+]
+Output:
+[
+  [1,0,1],
+  [0,0,0],
+  [1,0,1]
+]
+Example 2:
+
+Input:
+[
+  [0,1,2,0],
+  [3,4,5,2],
+  [1,3,1,5]
+]
+Output:
+[
+  [0,0,0,0],
+  [0,4,5,0],
+  [0,3,1,0]
+]
+Follow up:
+
+A straight forward solution using O(mn) space is probably a bad idea.
+A simple improvement uses O(m + n) space, but still not the best solution.
+Could you devise a constant space solution?
+ */
+
+/**
+ * 这题先是检查第一列和第一行有没有零
+ * 因为后面别的地方的0都会被映射到第一列和第一行 所以先要存下来
+ */
 public class SetMatrixZero73 {
     public void setZeroes(int[][] matrix) {
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return ;
