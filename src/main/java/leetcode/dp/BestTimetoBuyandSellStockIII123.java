@@ -40,12 +40,12 @@ public class BestTimetoBuyandSellStockIII123 {
         int[] dp = new int[maxTrans + 1];
         Arrays.fill(min , prices[0]);
         for (int i = 1 ; i < prices.length ; ++i) {
-            for (int k = 1 ; k < maxTrans ; ++k) {
+            for (int k = 1 ; k <= maxTrans ; ++k) {
                 min[k] = Math.min(min[k] , prices[i] - dp[k - 1]);
                 dp[k] = Math.max(dp[k] , prices[i] - min[k]);
             }
         }
-        return dp[maxTrans - 1];
+        return dp[maxTrans];
     }
 
     public int maxProfitMethod2(int[] prices) {
@@ -58,12 +58,12 @@ public class BestTimetoBuyandSellStockIII123 {
         int[] dp = new int[maxTrans + 1];
         Arrays.fill(min , Integer.MAX_VALUE);//fill with MAX_VALUE
         for (int i = 0 ; i < prices.length ; ++i) {//so here should begin from 0
-            for (int k = 1 ; k < maxTrans ; ++k) {
+            for (int k = 1 ; k <= maxTrans ; ++k) {
                 min[k] = Math.min(min[k] , prices[i] - dp[k - 1]);
                 dp[k] = Math.max(dp[k] , prices[i] - min[k]);
             }
         }
-        return dp[maxTrans - 1];
+        return dp[maxTrans];
     }
 
 
@@ -71,5 +71,7 @@ public class BestTimetoBuyandSellStockIII123 {
         BestTimetoBuyandSellStockIII123 bt = new BestTimetoBuyandSellStockIII123();
         System.out.println(bt.maxProfitMethod1(new int[] {7,6,4,3,1}));
         System.out.println(bt.maxProfitMethod2(new int[] {1,2,3,4,5}));
+        System.out.println(bt.maxProfitMethod2(new int[] {3,2,6,5,0,3}));
+
     }
 }
