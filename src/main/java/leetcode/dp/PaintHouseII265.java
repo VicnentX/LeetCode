@@ -25,27 +25,28 @@ public class PaintHouseII265 {
         int n = costs.length;
         int k = costs[0].length;
 
-        int preMin = 0;
-        int preMinInd = -1;
-        int preSecMin = 0;
-        for(int i = 0 ; i < n ; ++i){
-            int min = Integer.MAX_VALUE;
-            int minInd = -1;
-            int secMin = Integer.MAX_VALUE;
-            for(int j = 0 ; j < k ; ++j){
-                int val = costs[i][j] + (j == preMinInd ? preSecMin : preMin);
-                if(val < min){
-                    secMin = min;
-                    min = val;
-                    minInd = j;
-                }else if(val < secMin){
-                    secMin = val;
+        int lastMin1 = 0 , lastMin2 = 0 , lastIndex = -1;//lastIndex means the index of lastMin1
+        for (int i = 0 ; i < n ; ++i) {
+            int min1 = Integer.MAX_VALUE , min2 = Integer.MAX_VALUE , index = -1;
+            for (int j = 0 ; j < k ; ++j) {
+                int cost = costs[i][j] + (j == lastIndex ? lastMin2 : lastMin1);
+                if (cost < min1) {
+                    min2 = min1;
+                    min1 = cost;
+                    index = j;
+                } else if (cost < min2) {
+                    min2 = cost;
                 }
             }
-            preMin = min;
-            preMinInd = minInd;
-            preSecMin = secMin;
+            lastMin1 = min1;
+            lastMin2 = min2;
+            lastIndex = index;
         }
-        return preMin;
+        return lastMin1;
+    }
+
+    public static void main (String[] args) {
+        PaintHouseII265 ph = new PaintHouseII265();
+        System.out.println(ph.minCostII(new int[][] {{1,5,3},{2,9,4}}));
     }
 }

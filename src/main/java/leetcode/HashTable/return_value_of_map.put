@@ -1,0 +1,9 @@
+The method put has a return type same with the value:
+
+@Override
+    public V put(K key, V value) {
+        return putImpl(key, value);
+    }
+The method associates the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
+It returns the previous value associated with key, or null if there was no mapping for key.So, your points are right.
+For more details please visit here

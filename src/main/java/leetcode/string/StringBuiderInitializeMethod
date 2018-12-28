@@ -1,0 +1,12 @@
+All values in any array are null unless they are set... you need to initialise each value manually
+
+StringBuilder[] sb=new StringBuilder[100];
+for(int i=0; i<sb.length; i++) {
+    sb[i]=new StringBuilder();
+}
+or...
+
+StringBuilder[] sb=new StringBuilder[]{new StringBuilder(), new StringBuilder(), etc
+
+++++++++++++++++++++++++++++++++++++++++
+
