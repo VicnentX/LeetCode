@@ -10,3 +10,7 @@ StringBuilder[] sb=new StringBuilder[]{new StringBuilder(), new StringBuilder(),
 
 ++++++++++++++++++++++++++++++++++++++++
 
+StringBuilder curr=new StringBuilder("1");
+
+++++++++++++++++++++++++++++++++++++++++
+

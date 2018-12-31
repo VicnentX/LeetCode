@@ -1,0 +1,19 @@
+int to char
+
+for (int i = n - 1 ; i >= 0 ; --i) {
+            int cur = Character.getNumericValue(aa[i + m - n]) + Character.getNumericValue(bb[i]) + carry;
+            aa[i + m - n] = (char)(cur % 2 + '0');
+            carry = cur / 2;
+        }
+for (int i = m - n - 1 ; i >= 0 ; --i) {
+    int cur = Character.getNumericValue(aa[i] + carry);
+    aa[i] = (char)(cur % 2 + '0');
+    carry = cur / 2;
+
+    _______________________________
+
+
+
+
+
+

@@ -8,11 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("a");
-        StringBuilder tem = sb;
-        sb.append("b");
-        System.out.println(tem.toString());
+        String s = "  ";
+        String ss = s.trim();
+        System.out.println(ss.length());
 
 
 

@@ -1,0 +1,5 @@
+Map<Character, List<String>> map = new HashMap<>();
+        map.put('2', Arrays.asList("a", "b", "c"));
+
+++++++++++++++++++++
+

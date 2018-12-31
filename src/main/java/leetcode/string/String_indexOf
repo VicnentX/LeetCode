@@ -9,3 +9,16 @@ public String longestCommonPrefix(String[] strs) {
     }
     return pre;
 }
+
+
+
+public int numUniqueEmails(String[] emails) {
+        Set<String> ret = new HashSet<>();
+        for (String s : emails) {
+            String[] parts = s.split("@");
+            String[] locals = parts[0].split("\\+");
+            String cur = locals[0].replace("." , "") + "@" + parts[1];
+            ret.add(cur);
+        }
+        return ret.size();
+    }

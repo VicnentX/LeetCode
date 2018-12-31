@@ -82,9 +82,29 @@ public class RegularExpressionMatching10 {
         return dp[m][n];
     }
 
+    public boolean isMatchTest(String s, String p) {
+        if ((s != null && p == null) || (s.length() != 0 && p.length() == 0)) return false;
+        int m = s.length();
+        int n = p.length();
+        boolean[][] dp = new boolean[m + 1][n + 1];
+        dp[0][0] = true;
+        for (int i = 0 ; i <= m ; ++i) {
+            for (int j = 1 ; j <= n ; ++j) {
+                if (j >= 2 && p.charAt(j - 1) == '*') {
+                    dp[i][j] = dp[i][j - 2] || i >= 1 && (s.charAt(i - 1) == p.charAt(j - 2) || p.charAt(j - 2) == '.') && dp[i - 1][j];
+                } else {
+                    dp[i][j] = i >= 1 && (s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.') && dp[i - 1][j - 1];
+                }
+            }
+        }
+        return dp[m][n];
+    }
+
     public static void main (String[] args) {
         RegularExpressionMatching10 re = new RegularExpressionMatching10();
-        System.out.println(re.isMatch("mississippi" ,  "mis*is*p*."));
-        System.out.println(re.isMatchDP("mississippi" ,  "mis*is*p*."));
+//        System.out.println(re.isMatch("mississippi" ,  "mis*is*p*."));
+//        System.out.println(re.isMatchDP("mississippi" ,  "mis*is*p*."));
+//        System.out.println(re.isMatchDP("aa" ,  "a*"));
+        System.out.println(re.isMatchTest("aa" ,  "a*"));
     }
 }
