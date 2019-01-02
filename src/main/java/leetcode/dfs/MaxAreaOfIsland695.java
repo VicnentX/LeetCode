@@ -2,41 +2,28 @@ package leetcode.dfs;
 
 public class MaxAreaOfIsland695 {
 
-    int tem;
-
     public int maxAreaOfIsland(int[][] grid) {
+        int ret = 0;
+        if (grid.length == 0 || grid[0].length == 0) return ret;
         int m = grid.length;
         int n = grid[0].length;
-        int ret = 0;
-        for(int i = 0 ; i < m ; ++i){
-            for(int j = 0 ; j < n ; ++j){
-                if(grid[i][j] == 1){
-                    tem = 0;//这里的tem 不能int 加了的话就和外面的tem是两个东西了
-                    dfs(grid , i , j , m , n);
-                    ret = Math.max(tem , ret);
+        for (int i = 0 ; i < m ; ++i) {
+            for (int j = 0 ; j < n ; ++j) {
+                if (grid[i][j] == 1) {
+                    ret = Math.max(ret , dfs(i , j , grid , m , n));
                 }
             }
         }
         return ret;
     }
-    private void dfs(int[][] grid , int i , int j , int m , int n){
-        if(grid[i][j] == 1){
-            grid[i][j] = 0;
-            ++tem;
-            if(i - 1 >= 0){
-                dfs(grid , i - 1 , j , m , n);
-            }
-            if(i + 1 < m){
-                dfs(grid , i + 1 , j , m , n);
-            }
-            if(j - 1 >= 0){
-                dfs(grid , i , j - 1 , m , n);
-            }
-            if(j + 1 < n){
-                dfs(grid , i , j + 1 , m , n);
-            }
-        }
-        return;
+    private int dfs(int i , int j , int[][] grid , int m , int n) {
+        if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == 0) return 0;
+        grid[i][j] = 0;
+        return dfs(i + 1, j , grid , m , n)
+                + dfs(i - 1, j , grid , m , n)
+                + dfs(i , j + 1, grid , m , n)
+                + dfs(i , j - 1, grid , m , n)
+                + 1;
     }
 
     public static void main(String[] args){
