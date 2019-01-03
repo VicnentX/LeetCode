@@ -76,9 +76,61 @@ public class RemoveInvalidParentheses301 {
 
     }
 
+    public List<String> removeInvalidParenthesesBFS(String s) {
+        List<String> ret = new ArrayList<>();
+        if (s.length() == 0) {
+            ret.add("");
+            return new ArrayList<>(ret);
+        }
+        Queue<String> queue = new LinkedList<>();
+        queue.add(s);
+        boolean flag = true;
+        while(!queue.isEmpty()) {
+            Set<String> tem = new HashSet<>();
+            while (!queue.isEmpty()) {
+                String str = queue.poll();
+                if (isValid(str)) {
+                    ret.add(str);
+                    flag = false;
+                } else {
+                    if (flag) {
+                        for (int i = 0 ; i < str.length() ; ++i) {
+                            tem.add(str.substring(0 , i) + str.substring(i + 1));
+                        }
+                    }
+                }
+            }
+            if (flag) {
+                queue.addAll(tem);
+            }
+        }
+        return ret;
+    }
+
+    private boolean isValid (String s) {
+        int cnt = 0;
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                ++cnt;
+            } else if (c == ')'){
+                if (cnt == 0) {
+                    return false;
+                }
+                --cnt;
+            }
+        }
+        return cnt == 0;
+    }
+
     public static void main (String[] args) {
         RemoveInvalidParentheses301 ri = new RemoveInvalidParentheses301();
         for (String s : ri.removeInvalidParenthesesDFS("())")) {
+            System.out.println(s);
+        }
+
+        System.out.println("_________________");
+
+        for (String s : ri.removeInvalidParenthesesBFS("())")) {
             System.out.println(s);
         }
     }
