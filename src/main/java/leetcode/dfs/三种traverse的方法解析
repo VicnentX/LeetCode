@@ -1,0 +1,35 @@
+****in-order****
+
+ * Let's start by writing the in order traversal:
+ *
+ * private void traverse (TreeNode root) {
+ *    if (root == null)
+ *       return;
+ *    traverse(root.left);
+ *    // Do some business
+ *    traverse(root.right);
+
+
+***pre-roder***
+
+     private void dfs (TreeNode node) {
+         if (node == null) return;
+         //start of doing something
+         ret.add(new TreeNode(node.val));
+         //end of doing something
+         dfs(node.left);
+         dfs(node.right);
+     }
+
+***post-roder***
+    TreeNode pre = null
+    private void dfs (TreeNode node) {
+        if (node == null) return ;
+        dfs(node.right);
+        dfs(node.left);
+        // start of doing something
+        node.right = pre;
+        node.left = null;
+        pre = node;
+        // end of doing something
+    }
