@@ -1,4 +1,4 @@
-package leetcode.dfs;
+package leetcode.dfs_bfs;
 
 /*
 Given two binary trees, write a function to check if they are the same or not.

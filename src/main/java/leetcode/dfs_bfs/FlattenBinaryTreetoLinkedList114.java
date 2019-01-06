@@ -1,4 +1,4 @@
-package leetcode.dfs;
+package leetcode.dfs_bfs;
 
 /*
 Given a binary tree, flatten it to a linked list in-place.

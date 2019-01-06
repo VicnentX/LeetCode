@@ -1,4 +1,4 @@
-package leetcode.dfs;
+package leetcode.dfs_bfs;
 
 /*
 Given a binary tree, determine if it is height-balanced.

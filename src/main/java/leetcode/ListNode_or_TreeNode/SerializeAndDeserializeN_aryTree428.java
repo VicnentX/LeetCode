@@ -16,7 +16,7 @@ class Node {
 
 
 public class SerializeAndDeserializeN_aryTree428 {
-    //dfs
+    //dfs_bfs
     // Encodes a tree to a single string.
 //    public String serialize(Node root) {
 //        List<String> list = new LinkedList<>();

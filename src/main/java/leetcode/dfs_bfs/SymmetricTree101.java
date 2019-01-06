@@ -1,4 +1,4 @@
-package leetcode.dfs;
+package leetcode.dfs_bfs;
 
 /*
 Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).

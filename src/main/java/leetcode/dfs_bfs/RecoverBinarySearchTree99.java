@@ -1,4 +1,4 @@
-package leetcode.dfs;
+package leetcode.dfs_bfs;
 
 /*
 Two elements of a binary search tree (BST) are swapped by mistake.

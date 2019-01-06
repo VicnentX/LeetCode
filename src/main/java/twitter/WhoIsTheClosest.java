@@ -1,7 +1,5 @@
 package twitter;
 
-import leetcode.dfs.MaxAreaOfIsland695;
-
 import java.util.*;
 
 

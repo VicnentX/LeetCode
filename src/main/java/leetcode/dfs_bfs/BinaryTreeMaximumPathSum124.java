@@ -1,4 +1,4 @@
-package leetcode.dfs;
+package leetcode.dfs_bfs;
 /*
 Given a non-empty binary tree, find the maximum path sum.
 

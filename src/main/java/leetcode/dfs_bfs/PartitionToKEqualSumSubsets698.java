@@ -1,4 +1,4 @@
-package leetcode.dfs;
+package leetcode.dfs_bfs;
 
 /*
 Given an array of integers nums and a positive integer k, find whether it's possible to divide this array into k non-empty subsets whose sums are all equal.
@@ -19,7 +19,6 @@ Note:
  这样会更快一些。
  */
 
-import java.util.stream.IntStream;
 import java.util.*;
 
 public class PartitionToKEqualSumSubsets698 {

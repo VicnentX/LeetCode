@@ -54,13 +54,13 @@ class Result {
 //        prime = new int[n + 1];
 //
 //        //Arrays.fill(prime , -1);
-//        dfs(1 , prime , map , visited , value);
+//        dfs_bfs(1 , prime , map , visited , value);
 //        for(int i =  0 ; i < query.size() ; ++i){
 //            ret.add(prime[query.get(i)]);
 //        }
 //        return ret;
 //    }
-//    private static int dfs(int id , int[] prime , Map<Integer , List<Integer>> map , int[] visited , List<Integer> value){
+//    private static int dfs_bfs(int id , int[] prime , Map<Integer , List<Integer>> map , int[] visited , List<Integer> value){
 //
 //        visited[id] = 1;
 //
@@ -72,7 +72,7 @@ class Result {
 //        for(int k : map.get(id)){
 //            if(visited[k] == 0){
 //                //visited[k] = 1;
-//                prime[id] += dfs(k, prime, map , visited , value);
+//                prime[id] += dfs_bfs(k, prime, map , visited , value);
 //            }
 //        }
 //

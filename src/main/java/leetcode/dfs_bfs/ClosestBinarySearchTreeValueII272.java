@@ -1,4 +1,4 @@
-package leetcode.dfs;
+package leetcode.dfs_bfs;
 
 import java.util.*;
 
@@ -44,7 +44,7 @@ public class ClosestBinarySearchTreeValueII272 {
 //    public List<Integer> closestKValues(TreeNode root, double target, int k) {
 //
 //        Deque<Integer> q = new LinkedList<>();
-//        dfs(root , q);
+//        dfs_bfs(root , q);
 //        while(q.size() > k){
 //            if(Math.abs(q.peekLast() - target) > Math.abs(q.peekFirst() - target)){
 //                q.pollLast();
@@ -54,13 +54,13 @@ public class ClosestBinarySearchTreeValueII272 {
 //        }
 //        return new ArrayList<>(q);
 //    }
-//    private void dfs(TreeNode root , Deque<Integer> q){
+//    private void dfs_bfs(TreeNode root , Deque<Integer> q){
 //        if(root == null){
 //            return ;
 //        }
-//        dfs(root.left , q);
+//        dfs_bfs(root.left , q);
 //        q.add(root.val);
-//        dfs(root.right , q);
+//        dfs_bfs(root.right , q);
 //    }
 
     //方法二 先initiate两个stack 用掉一个数字 就为那个stack加一串数字

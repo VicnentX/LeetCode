@@ -33,7 +33,7 @@ import java.util.*;
 
 public class CombinationSumII40 {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        //sort first then dfs with breaking when target < 0
+        //sort first then dfs_bfs with breaking when target < 0
         List<List<Integer>> ret = new ArrayList<>();
         if(target <= 0 || candidates == null || candidates.length == 0) return ret;
         Arrays.sort(candidates);
@@ -46,7 +46,7 @@ public class CombinationSumII40 {
             ret.add(new ArrayList<>(tem));
         }
         for(int i = start ; i < candidates.length ; ++i){
-            if(i > start && candidates[i] == candidates[i - 1]) continue; //avoid same number in the same position when dfs
+            if(i > start && candidates[i] == candidates[i - 1]) continue; //avoid same number in the same position when dfs_bfs
             tem.add(candidates[i]);
             dfs(ret , tem , candidates , i + 1 , target - candidates[i]);
             tem.remove(tem.size() - 1);

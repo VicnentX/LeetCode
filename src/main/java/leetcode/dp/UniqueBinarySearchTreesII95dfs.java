@@ -25,8 +25,6 @@ The above output corresponds to the 5 unique BST's shown below:
    2     1         2                 3
  */
 
-import leetcode.dfs.UniqueBinarySearchTreesII95;
-
 import java.util.*;
 
 public class UniqueBinarySearchTreesII95dfs {
