@@ -1,4 +1,4 @@
-package leetcode.ScanWindow;
+package leetcode.SlideWindow_TwoPointers;
 /*
 Given a string, find the length of the longest substring without repeating characters.
 

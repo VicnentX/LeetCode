@@ -26,6 +26,8 @@ public class ReconstructingArrays {
         }
     }
 
+    //if the input is the array or list , use mem to record the previous case .
+
     public static void main(String[] args){
         ReconstructingArrays ra = new ReconstructingArrays();
         System.out.println(ra.findNumberOfArrays(4,4,2));

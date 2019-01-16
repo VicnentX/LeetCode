@@ -48,7 +48,9 @@ public class BalancedBinaryTree110 {
 
     public boolean isBalanced(TreeNode root) {
         if (root == null) return true;
-        return Math.abs(dfs(root.left) - dfs(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right);
+        return Math.abs(dfs(root.left) - dfs(root.right)) <= 1
+                && isBalanced(root.left)
+                && isBalanced(root.right);
     }
 
     private int dfs (TreeNode root) {

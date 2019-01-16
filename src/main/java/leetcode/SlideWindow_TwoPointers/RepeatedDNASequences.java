@@ -1,4 +1,4 @@
-package leetcode.ScanWindow;
+package leetcode.SlideWindow_TwoPointers;
 
 import java.util.*;
 

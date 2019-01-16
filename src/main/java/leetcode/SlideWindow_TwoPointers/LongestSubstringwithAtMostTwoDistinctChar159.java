@@ -1,4 +1,4 @@
-package slidewindow;
+package leetcode.SlideWindow_TwoPointers;
 
 import java.util.*;
 
@@ -37,4 +37,33 @@ public class LongestSubstringwithAtMostTwoDistinctChar159 {
         }
         return len;
     }
+
+    public int lengthOfLongestSubstringTwoDistinctMethod2(String s) {
+        int ret = 0;
+        int start = 0;
+        int n = s.length();
+        if (s == null || s.length() == 0) return ret;
+        Map<Character , Integer> map = new HashMap<>();
+        for (int i = 0 ; i < n ; ++i) {
+            char c = s.charAt(i);
+            map.put(c , i);
+            if (map.size() > 2) {
+                char dele = s.charAt(start);
+                start = map.get(dele);
+                for (char check : map.keySet()) {
+                    if (map.get(check) < start) {
+                        dele = check;
+                        start = map.get(check);
+                    }
+                }
+                map.remove(dele);
+                ++start;
+            } else {
+                ret = Math.max(ret , i - start + 1);
+            }
+        }
+        return ret;
+    }
+
+
 }

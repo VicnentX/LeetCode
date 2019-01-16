@@ -12,6 +12,10 @@ public class Main {
         String ss = s.trim();
         System.out.println(ss.length());
 
+        Set<ArrayList<Integer>> ret = new HashSet<>();
+        ret.add(new ArrayList<Integer>(Arrays.asList(1,2,3,4)));
+        ret.add(new ArrayList<Integer>(Arrays.asList(1,2,3,4)));
+        System.out.println(ret.size());
 
 
 

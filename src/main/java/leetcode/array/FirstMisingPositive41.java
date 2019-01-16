@@ -24,7 +24,7 @@ Note:
  */
 
 
-public class FirstMisingPositive {
+public class FirstMisingPositive41 {
 
     public int firstMissingPositive(int[] nums) {
         for (int i = 0 ; i < nums.length ; ++i) {
@@ -48,7 +48,7 @@ public class FirstMisingPositive {
     }
 
     public static void main (String[] args) {
-        FirstMisingPositive fm = new FirstMisingPositive();
+        FirstMisingPositive41 fm = new FirstMisingPositive41();
         System.out.println(fm.firstMissingPositive(new int[] {3,4,-1,1}));
     }
 }
