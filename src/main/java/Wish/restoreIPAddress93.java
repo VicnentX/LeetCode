@@ -1,5 +1,16 @@
 package Wish;
 
+/*
+Given a string containing only digits, restore it by returning all possible valid IP address combinations.
+
+Example:
+
+Input: "25525511135"
+Output: ["255.255.11.135", "255.255.111.35"]
+Seen this question in a real interview before?
+
+ */
+
 import java.util.*;
 
 public class restoreIPAddress93 {

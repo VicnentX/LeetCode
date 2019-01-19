@@ -38,6 +38,10 @@ Output:
 []
  */
 
+/**
+ * 这里的map是为了后面多次测试所用
+ */
+
 import java.util.*;
 
 public class WordBreakII140 {
