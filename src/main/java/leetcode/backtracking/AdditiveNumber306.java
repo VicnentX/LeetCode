@@ -37,10 +37,16 @@ public class AdditiveNumber306 {
                 return dfs(pre2 , 0 , 0 + pre2 , start + 1 , s , level + 1);
             } else {
                 for (int len = 1 ; len <= s.length() - start; ++len) {
-                    long tem = Long.valueOf(s.substring(start , start + len));
-                    if (dfs(pre2 , tem , pre2 + tem , start + len , s , level + 1)) {
-                        return true;
+
+                    try{
+                        long tem = Long.valueOf(s.substring(start , start + len));
+                        if (dfs(pre2 , tem , pre2 + tem , start + len , s , level + 1)) {
+                            return true;
+                        }
+                    }catch(NumberFormatException e){
+
                     }
+
                 }
                 return false;
             }
@@ -57,5 +63,8 @@ public class AdditiveNumber306 {
     public static void main (String[] args) {
         AdditiveNumber306 an = new AdditiveNumber306();
         System.out.println(an.isAdditiveNumber("112358"));
+        System.out.println(an.isAdditiveNumber("199100199"));
+        //"199111992"
+        System.out.println(an.isAdditiveNumber("199111992"));
     }
 }
