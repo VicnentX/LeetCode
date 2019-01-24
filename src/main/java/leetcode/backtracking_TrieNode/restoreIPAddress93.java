@@ -1,4 +1,4 @@
-package leetcode.backtracking;
+package leetcode.backtracking_TrieNode;
 
 /*
 Given a string containing only digits, restore it by returning all possible valid IP address combinations.

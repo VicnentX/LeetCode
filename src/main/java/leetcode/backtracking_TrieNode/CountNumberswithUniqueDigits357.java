@@ -1,4 +1,4 @@
-package leetcode.backtracking;
+package leetcode.backtracking_TrieNode;
 
 /*
 Given a non-negative integer n, count all numbers with unique digits, x, where 0 ≤ x < 10n.
@@ -10,8 +10,6 @@ Output: 91
 Explanation: The answer should be the total numbers in the range of 0 ≤ x < 100,
              excluding 11,22,33,44,55,66,77,88,99
  */
-
-import leetcode.string.CountAndSay38;
 
 public class CountNumberswithUniqueDigits357 {
     private int ret = 0;

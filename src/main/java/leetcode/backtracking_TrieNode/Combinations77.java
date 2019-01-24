@@ -1,4 +1,4 @@
-package leetcode.backtracking;
+package leetcode.backtracking_TrieNode;
 
 /*
  Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.

@@ -1,4 +1,4 @@
-package leetcode.backtracking;
+package leetcode.backtracking_TrieNode;
 
 /*
 Additive number is a string whose digits can form additive sequence.

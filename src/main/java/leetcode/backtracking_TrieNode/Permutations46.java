@@ -1,4 +1,4 @@
-package leetcode.backtracking;
+package leetcode.backtracking_TrieNode;
 
 /*
 Given a collection of distinct integers, return all possible permutations.

@@ -1,4 +1,4 @@
-package leetcode.backtracking;
+package leetcode.backtracking_TrieNode;
 
 /*
 Write a program to solve a Sudoku puzzle by filling the empty cells.
