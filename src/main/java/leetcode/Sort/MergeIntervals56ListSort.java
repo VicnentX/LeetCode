@@ -29,17 +29,16 @@ public class MergeIntervals56ListSort {
 
     public List<Interval> merge(List<Interval> intervals) {
         List<Interval> ret = new ArrayList<>();
-        intervals.sort((a,b) -> Integer.compare(a.start , b.start));
-        intervals.sort(Comparator.comparingInt(a -> a.start));
+        if (intervals.size() == 0) return ret;
+        Collections.sort(intervals , Comparator.comparing(interval -> interval.start));
         Interval cur = intervals.get(0);
         for (int i = 1 ; i < intervals.size() ; ++i) {
-            if (intervals.get(i).start < cur.end) {
-                if (intervals.get(i).end > cur.end) {
-                    cur = new Interval(cur.start, intervals.get(i).end);
-                }
+            Interval tem = intervals.get(i);
+            if (tem.start <= cur.end) {
+                cur = new Interval(cur.start , Math.max(cur.end , tem.end));
             } else {
                 ret.add(cur);
-                cur = intervals.get(i);
+                cur = tem;
             }
         }
         ret.add(cur);
