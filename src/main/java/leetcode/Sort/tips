@@ -1,0 +1,5 @@
+／＊
+this is to new a int[] and copy first k elements from index i to index j - 1;
+return Arrays.copyOfRange(points, i, j);
+
+＊／
