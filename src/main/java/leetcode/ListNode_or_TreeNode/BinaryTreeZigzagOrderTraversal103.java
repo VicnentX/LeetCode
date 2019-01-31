@@ -17,38 +17,26 @@ class TreeNode {
 public class BinaryTreeZigzagOrderTraversal103 {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> ret = new ArrayList<>();
-        if(root == null) return ret;
-        Deque<TreeNode> dq = new LinkedList<>();
-        dq.add(root);
-        int level = 0;
-        while(!dq.isEmpty()){
+        if (root == null) return ret;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int cnt = 0;
+        while (!queue.isEmpty()) {
             List<Integer> tem = new ArrayList<>();
-            Deque<TreeNode> next = new LinkedList<>();
-            int len = dq.size();
-            for(int i = 0 ; i < len ; ++i){
-                if(level % 2 == 0){
-                    TreeNode node = dq.removeLast();
+            int n = queue.size();
+            for (int i = 0 ; i < n ; ++i) {
+                TreeNode node = queue.poll();
+                if (node.left !=  null) queue.add(node.left);
+                if (node.right != null) queue.add(node.right);
+
+                if (cnt % 2 == 0) {
                     tem.add(node.val);
-                    if(node.left != null){
-                        next.add(node.left);
-                    }
-                    if(node.right != null){
-                        next.add(node.right);
-                    }
-                }else{
-                    TreeNode node = dq.removeLast();
-                    tem.add(node.val);
-                    if(node.right != null){
-                        next.add(node.right);
-                    }
-                    if(node.left != null){
-                        next.add(node.left);
-                    }
+                } else {
+                    tem.add(0 , node.val);
                 }
             }
-            ++level;
-            dq = next;
             ret.add(tem);
+            ++cnt;
         }
         return ret;
     }
