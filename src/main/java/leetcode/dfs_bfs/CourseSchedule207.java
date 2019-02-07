@@ -59,6 +59,38 @@ public class CourseSchedule207 {
         return cnt == 0;
     }
 
+    public boolean canFinish2(int n, int[][] pres) {
+        Map<Integer , Integer> degree = new HashMap<>();
+        Map<Integer , List<Integer>> map = new HashMap<>();
+        for (int[] pre : pres) {
+            degree.put(pre[0] , degree.getOrDefault(pre[0] , 0) + 1);
+            map.putIfAbsent(pre[1] , new ArrayList<>());
+            map.get(pre[1]).add(pre[0]);
+        }
+        int ret = 0;
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0 ; i < n ; ++i) {
+            if (!degree.containsKey(i)) {
+                queue.add(i);
+            }
+        }
+
+        while(!queue.isEmpty()) {
+            int cur = queue.poll();
+            ++ret;
+            if (map.containsKey(cur)) {
+                for (int k : map.get(cur)) {
+                    degree.put(k , degree.get(k) - 1);
+                    if (degree.get(k) == 0) {
+                        queue.add(k);
+                    }
+                }
+            }
+        }
+
+        return ret == n;
+    }
+
     public static void main (String[] args) {
         CourseSchedule207 cs = new CourseSchedule207();
         System.out.println(cs.canFinish(2, new int[][]{{1,0},{0,1}}));

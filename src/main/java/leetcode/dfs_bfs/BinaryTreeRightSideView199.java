@@ -24,24 +24,24 @@ public class BinaryTreeRightSideView199 {
             val = x;
         }
     }
-    public List<Integer> rightSideViewBFS(TreeNode root) {
+    public List<Integer> rightSideView(TreeNode root) {
         List<Integer> ret = new ArrayList<>();
         if (root == null) return ret;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
+
         while (!queue.isEmpty()) {
-            Queue<TreeNode> tem = new LinkedList<>();
-            boolean flagAdd = true;
-            while (!queue.isEmpty()) {
-                TreeNode node = queue.poll();
-                if (flagAdd) {
-                    ret.add(node.val);
-                    flagAdd = false;
+            int n = queue.size();
+            boolean flag = true;
+            for (int i = 0 ; i < n ; ++i) {
+                TreeNode cur = queue.poll();
+                if (flag) {
+                    ret.add(cur.val);
+                    flag = !flag;
                 }
-                if (node.right != null) tem.add(node.right);
-                if (node.left != null) tem.add(node.left);
+                if (cur.right != null) queue.add(cur.right);
+                if (cur.left != null) queue.add(cur.left);
             }
-            queue = tem;
         }
         return ret;
     }

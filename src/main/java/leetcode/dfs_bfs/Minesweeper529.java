@@ -108,4 +108,53 @@ public class Minesweeper529 {
 
         return tem;
     }
+
+    //BFS
+    public char[][] updateBoardBFS(char[][] board, int[] click) {
+        if (board.length == 0 || board[0].length == 0) return board;
+        int m = board.length;
+        int n = board[0].length;
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(click);
+        while (!queue.isEmpty()) {
+            int[] cur = queue.poll();
+            int i = cur[0];
+            int j = cur[1];
+            if (board[i][j] == 'M') {
+                board[i][j] = 'X';
+            } else {
+                int mine = findMines(i , j , board , m , n);
+                board[i][j] = mine == 0 ? 'B' : (char)(mine + '0');
+                if (board[i][j] == 'B') {
+                    addQueue(i , j , board , m , n , queue);
+                }
+            }
+        }
+        return board;
+    }
+    private int findMines(int r , int c , char[][] board , int m , int n) {
+        int ret = 0;
+        for (int i = r - 1 ; i <= r + 1 ; ++i) {
+            for (int j = c - 1 ; j <= c + 1 ; ++j) {
+                if (i < 0 || i >= m || j < 0 || j >= n) continue;
+                if (board[i][j] == 'X' || board[i][j] == 'M') {
+                    ++ret;
+                }
+            }
+        }
+        return ret;
+    }
+    private void addQueue(int r , int c , char[][] board , int m , int n , Queue<int[]> queue) {
+        for (int i = r - 1 ; i <= r + 1 ; ++i) {
+            for (int j = c - 1 ; j <= c + 1 ; ++j) {
+                if (i < 0 || i >= m || j < 0 || j >= n) continue;
+                if (board[i][j] == 'M') {
+                    board[i][j] = 'X';
+                } else if (board[i][j] == 'E'){
+                    board[i][j] = 'Q';//mark as having been add to queue
+                    queue.add(new int[] {i , j});
+                }
+            }
+        }
+    }
 }

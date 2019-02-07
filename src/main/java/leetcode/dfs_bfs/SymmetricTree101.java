@@ -37,4 +37,15 @@ public class SymmetricTree101 {
         if (left == null || right == null) return left == right;
         return left.val == right.val && dfs(left.left , right.right) && dfs(left.right , right.left);
     }
+
+
+    public boolean isSymmetric2(TreeNode root) {
+        if (root == null) return true;
+        return dfs(root.left , root.right);
+    }
+    private boolean dfs2 (TreeNode left , TreeNode right) {
+        if (left == null && right == null) return true;
+        if (left == null || right == null) return false;
+        return left.val == right.val && dfs(left.left , right.right) && dfs(left.right , right.left);
+    }
 }

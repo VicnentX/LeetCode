@@ -54,41 +54,46 @@ public class WordLadder {
         return len == 1? true : false;
     }
 
-    public int ladderLength2(String bw, String ew, List<String> wordList) {
-        if (wordList.size() == 0) return 0;
 
-        int size = wordList.get(0).length();
-        Set<String> lib = new HashSet<>();
+    //___________________________________________
+
+    public int ladderLength2(String start, String end, List<String> wordList) {
+        Set<String> set = new HashSet<>();
         for (String s : wordList) {
-            lib.add(s);
+            set.add(s);
         }
-
-        if (!lib.contains(ew)) return 0;
-
-        Deque<String> queue = new LinkedList<>();
-        queue.add(bw);
-        int cnt = 1;
+        if (!set.contains(end)) return 0;
+        Queue<String> queue = new LinkedList<>();
+        queue.add(start);
+        int level = 1;
         while (!queue.isEmpty()) {
             int n = queue.size();
-            for (int i = 0; i < n; ++i) {
-                String s = queue.poll();
-                for (int j = 0; j < size; ++j) {
-                    char[] ch = s.toCharArray();
-                    for (int k = 0; k < 26; ++k) {
-                        ch[j] = (char) (k + 'a');
-                        String str = String.valueOf(ch);
-                        if (lib.contains(str)) {
-                            if (ew.equals(str)) return cnt + 1;
-                            queue.add(str);
-                            lib.remove(str);
-                        }
-                    }
-                }
+            for (int i = 0 ; i < n ; ++i) {
+                String cur = queue.poll();
+                if (cur.equals(end)) return level;
+                findNeighbors(cur , set , queue);
             }
-            ++cnt;
+            ++level;
         }
         return 0;
     }
+    private void findNeighbors(String cur , Set<String> set , Queue<String> queue) {
+        char[] ch = cur.toCharArray();
+        for (char c = 'a' ; c <= 'z' ; ++c) {
+            for (int i = 0 ; i < ch.length ; ++i) {
+                if (c == ch[i]) continue;
+                char oldChar = ch[i];
+                ch[i] = c;
+                if (set.contains(String.valueOf(ch))) {
+                    queue.add(String.valueOf(ch));
+                    set.remove(String.valueOf(ch));
+                }
+                ch[i] = oldChar;
+            }
+        }
+    }
+
+    //_____________________________________________
 
 
     public static void main(String[] args){

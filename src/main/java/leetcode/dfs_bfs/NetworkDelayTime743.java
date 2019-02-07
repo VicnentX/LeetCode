@@ -67,6 +67,50 @@ public class NetworkDelayTime743 {
         }
     }
 
+
+
+
+
+
+    //BFS
+    public int networkDelayTimeBFS(int[][] times, int n, int k) {
+        //# of node map to index int the times
+        Map<Integer , List<Integer>> map = new HashMap<>();
+        for (int i =  0 ; i < times.length ; ++i) {
+            map.putIfAbsent(times[i][0] , new ArrayList<>());
+            map.get(times[i][0]).add(i);
+        }
+        int[] ret = new int[n + 1];
+        Arrays.fill(ret , Integer.MAX_VALUE);
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(k);
+        ret[k] = 0;
+
+        while (!queue.isEmpty()) {
+            Integer cur = queue.poll();
+            if (map.containsKey(cur)) {
+                for (int i : map.get(cur)) {
+                    int next = times[i][1];
+                    if (ret[cur] + times[i][2] < ret[next]) {//避免循环（1- 2 ， 2 － 1） 这种循环
+                        ret[next] = Math.min(ret[next] , ret[cur] + times[i][2]);
+                        queue.add(times[i][1]);
+                    }
+                }
+            }
+        }
+
+        int total = 0;
+        for (int i = 1 ; i <= n ; ++i) {
+            if (ret[i] == Integer.MAX_VALUE) return -1;
+            total = Math.max(total , ret[i]);
+        }
+        return total;
+    }
+
+
+
+
+
     public static void main (String[] args) {
         NetworkDelayTime743 nd = new NetworkDelayTime743();
         System.out.println(nd.networkDelayTime(new int[][] {{2,1,1},{2,3,1},{3,4,1}} , 4 ,2));

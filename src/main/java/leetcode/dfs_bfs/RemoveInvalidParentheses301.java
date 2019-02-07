@@ -23,6 +23,8 @@ import java.util.*;
 
 public class RemoveInvalidParentheses301 {
 
+    ///first version of dfs
+
     public List<String> removeInvalidParenthesesDFS(String s) {
         Set<String> ret = new HashSet<>();
         if (s == null || s.length() == 0) {
@@ -73,8 +75,67 @@ public class RemoveInvalidParentheses301 {
         } else {
             dfs (left , right , path + s.charAt(i) , s , i + 1 , ret);
         }
-
     }
+
+
+    ////second version of dfs
+
+    public List<String> removeInvalidParentheses(String s) {
+        Set<String> ret = new HashSet<>();
+        if (s.length() == 0) {
+            ret.add("");
+            return new ArrayList<>(ret);
+        }
+        int left = 0;
+        int right = 0;
+        int wasteRight = 0;
+        int wasteLeft = 0;
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                ++left;
+            } else if (c == ')') {
+                if (right < left) {
+                    ++right;
+                } else {
+                    ++wasteRight;
+                }
+            }
+        }
+        wasteLeft = left - right;
+        left = right;
+        System.out.println(wasteLeft);
+        System.out.println(wasteRight);
+        System.out.println(left);
+        dfs (0 , left , 0 , 0 , wasteLeft , wasteRight , s , ret , new StringBuilder());
+        return new ArrayList<>(ret);
+    }
+
+    private void dfs (int index , int n , int curLeft , int curRight , int wasteLeft , int wasteRight , String s , Set<String> ret , StringBuilder path) {
+        if (index == s.length()) {
+            ret.add(new String(path));
+            return ;
+        }
+
+        if (s.charAt(index) == '(') {
+            if (wasteLeft > 0) dfs(index + 1 , n , curLeft , curRight , wasteLeft - 1 , wasteRight , s , ret , path);
+            if (curLeft < n) {
+                dfs(index + 1 , n , curLeft + 1 , curRight , wasteLeft , wasteRight , s , ret , path.append('('));
+                path.deleteCharAt(path.length() - 1);
+            }
+        } else if (s.charAt(index) == ')') {
+            if (wasteRight > 0) dfs(index + 1 , n , curLeft , curRight , wasteLeft , wasteRight - 1, s , ret , path);
+            if (curRight < n && curRight < curLeft) {
+                dfs(index + 1 , n , curLeft, curRight + 1, wasteLeft , wasteRight , s , ret , path.append(')'));
+                path.deleteCharAt(path.length() - 1);
+            }
+        } else {
+            dfs(index + 1 , n , curLeft, curRight, wasteLeft , wasteRight , s , ret , path.append(s.charAt(index)));
+            path.deleteCharAt(path.length() - 1);
+        }
+    }
+
+
+    ////BFS
 
     public List<String> removeInvalidParenthesesBFS(String s) {
         List<String> ret = new ArrayList<>();

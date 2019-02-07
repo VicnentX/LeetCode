@@ -35,7 +35,7 @@ import java.util.*;
 public class BFS01Matrix542 {
     private Queue<int[]> queue = new LinkedList<>();
     private int[][] dirs = new int[][]{{-1 , 0} , {1 , 0} , {0 , -1} , {0 , 1}};
-    public int[][] updateMatrix(int[][] matrix) {
+    public int[][] updateMatrix1(int[][] matrix) {
         if (matrix.length == 0 || matrix[0].length == 0) return null;
         int m = matrix.length;
         int n = matrix[0].length;
@@ -71,4 +71,45 @@ public class BFS01Matrix542 {
             }
         }
     }
+
+    //BFS
+    public int[][] updateMatrix2(int[][] matrix) {
+        if (matrix.length == 0 || matrix[0].length == 0) return matrix;
+        int m = matrix.length;
+        int n = matrix[0].length;
+        Queue<int[]> queue = new LinkedList<>();
+        for (int i = 0 ; i < m ; ++i) {
+            for (int j = 0 ; j < n ; ++j) {
+                if (matrix[i][j] == 0) {
+                    queue.add(new int[] {i , j});
+                }
+            }
+        }
+        int level = 1;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0 ; i < size ; ++i) {
+                int[] cur = queue.poll();
+                for (int[] dir : dirs) {
+                    findNext(cur[0] + dir[0] , cur[1] + dir[1] , matrix , queue , level);
+                }
+            }
+            ++level;
+        }
+
+        for (int i = 0 ; i < m ; ++i) {
+            for (int j = 0 ; j < n ; ++j) {
+                matrix[i][j] = -matrix[i][j];
+            }
+        }
+        return matrix;
+    }
+    private void findNext (int i , int j , int[][] matrix , Queue<int[]> queue , int level) {
+        if (i < 0 || i >= matrix.length || j < 0 || j >= matrix[0].length || matrix[i][j] <= 0) return ;
+        matrix[i][j] = -level;
+        queue.add(new int[] {i , j});
+    }
+
+
+
 }

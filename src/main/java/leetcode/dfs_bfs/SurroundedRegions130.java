@@ -42,33 +42,36 @@ Seen this question in a real interview before?
  */
 
 public class SurroundedRegions130 {
-    public void solve(char[][] board) {
-        if (board.length == 0 || board[0].length == 0) return ;
-        int m = board.length;
-        int n = board[0].length;
-        int[][] visited = new int[m][n];
-        for (int i = 0 ; i < m ; ++i) {
-            dfs(i , 0 , board , visited , m , n);
-            dfs(i , n - 1 , board , visited , m , n);
-        }
-        for (int j = 0 ; j < n ; ++j) {
-            dfs(0 , j , board , visited , m , n);
-            dfs(m - 1 , j , board , visited , m , n);
-        }
-        for (int i = 0 ; i < m ; ++i) {
+    public void solve(char[][] b) {
+        if (b.length == 0 || b[0].length == 0) return ;
+        int m = b.length;
+        int n = b[0].length;
+        //mark the board
+        for (int i = 0 ; i <  m ; ++i) {
             for (int j = 0 ; j < n ; ++j) {
-                if (visited[i][j] == 0 && board[i][j] == 'O') {
-                    board[i][j] = 'X';
+                if (i == 0 || i == m - 1 || j == 0 || j == n - 1) {
+                    dfs(i , j , m , n , b);
                 }
             }
         }
+        //change the board
+        for (int i = 0 ; i <  m ; ++i) {
+            for (int j = 0 ; j < n ; ++j) {
+                if (b[i][j] == '#') {
+                    b[i][j] = 'O';
+                } else {
+                    b[i][j] = 'X';
+                }
+            }
+        }
+        return ;
     }
-    private void dfs (int i , int j , char[][] board , int[][] visited , int m , int n) {
-        if (i < 0 || i >= m || j < 0 || j >= n || visited[i][j] == 1 || board[i][j] == 'X') return;
-        visited[i][j] = 1;
-        dfs(i - 1 , j , board , visited , m , n);
-        dfs(i + 1 , j , board , visited , m , n);
-        dfs(i , j - 1 , board , visited , m , n);
-        dfs(i , j + 1 , board , visited , m , n);
+    private void dfs (int i , int j , int m , int n , char[][] b) {
+        if (i < 0 || i >= m || j < 0 || j >= n || b[i][j] != 'O') return;
+        b[i][j] = '#';
+        dfs(i - 1 , j , m , n , b);
+        dfs(i + 1 , j , m , n , b);
+        dfs(i , j - 1 , m , n , b);
+        dfs(i , j + 1 , m , n , b);
     }
 }
