@@ -42,50 +42,57 @@ public class Main {
 //        StringBuilder newsb = sb.reverse();
 //        System.out.println(sb);
 //        System.out.println(newsb);
-        List<Integer> ret = new ArrayList<>();
-        int cnt = 0;
-        int num = 560;
-        OUT:
-        while (cnt <= 2) {
-            ++num;
-            boolean isComposite = false;
-            for (int a = 2; a <= num - 2; ++a) {
-                if (gcd(a, num) != 1) {
-                    isComposite = true;
-                    break;
-                }
-            }
-            //num is a composite
-            if (isComposite) {
-                for (int a = 2 ; a <= num - 1 ; ++a) {
-                    if (powerMod(a , num - 1 , num) != 1) {
-                        continue OUT;
-                    }
-//                    if (Math.pow(a , num - 1) % num != 1) {
+
+
+//        List<Integer> ret = new ArrayList<>();
+//        int cnt = 0;
+//        int num = 560;
+//        OUT:
+//        while (cnt <= 2) {
+//            ++num;
+//            boolean isComposite = false;
+//            for (int a = 2; a <= num - 2; ++a) {
+//                if (gcd(a, num) != 1) {
+//                    isComposite = true;
+//                    break;
+//                }
+//            }
+//            //num is a composite
+//            if (isComposite) {
+//                for (int a = 2 ; a <= num - 1 ; ++a) {
+//                    if (powerMod(a , num - 1 , num) != 1) {
 //                        continue OUT;
 //                    }
-                }
-                ret.add(num);
-                ++cnt;
-            }
-        }
-        System.out.println(ret);
-    }
-    //return greatest common divisor of a and b
-    private static int gcd(int a , int b) {
-        if (b == 0) return a;
-        return gcd( b ,a % b);
-    }
-
-    //powerMod(b, e, m) = (b^e) % m
-    private static int  powerMod(int b , int e , int m) {
-        if (e == 0) return 1;
-        int temp = powerMod(b , e/2 , m);
-        int ans = (temp * temp) % m;
-        if (e % 2 == 0) {
-            return ans;
-        } else {
-            return (b * ans) % m;
-        }
+////                    if (Math.pow(a , num - 1) % num != 1) {
+////                        continue OUT;
+////                    }
+//                }
+//                ret.add(num);
+//                ++cnt;
+//            }
+//        }
+//        System.out.println(ret);
+//    }
+//    //return greatest common divisor of a and b
+//    private static int gcd(int a , int b) {
+//        if (b == 0) return a;
+//        return gcd( b ,a % b);
+//    }
+//
+//    //powerMod(b, e, m) = (b^e) % m
+//    private static int  powerMod(int b , int e , int m) {
+//        if (e == 0) return 1;
+//        int temp = powerMod(b , e/2 , m);
+//        int ans = (temp * temp) % m;
+//        if (e % 2 == 0) {
+//            return ans;
+//        } else {
+//            return (b * ans) % m;
+//        }
+        PriorityQueue<Object[]> heap = new PriorityQueue<>((a,b) -> (int)a[1] - (int)b[1]);
+        heap.add(new Object[] {'a' , 2});
+        heap.add(new Object[] {'b' , 1});
+        heap.add(new Object[] {'c' , 3});
+        System.out.println((int)heap.peek()[1]);
     }
 }

@@ -1,4 +1,4 @@
-package leetcode.string;
+package GuideWire;
 
 
 public class SeatReservations {
