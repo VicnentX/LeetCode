@@ -39,6 +39,25 @@ public class SortColors75 {
         }
         return;
     }
+
+    public void sortColorsFOR(int[] nums) {
+        if (nums.length == 0) return ;
+        int n = nums.length;
+        int start = 0;
+        int end = n - 1;
+        for (int i = 0 ; i <= end ; ++i) {
+            if (nums[i] == 0) {
+                swap(start , i , nums);
+                ++start;
+            } else if (nums[i] == 2) {
+                swap(end , i , nums);
+                --end;
+                --i;
+            }
+        }
+        return ;
+    }
+
     private void swap (int i , int j , int[] nums) {
         int tem = nums[i];
         nums[i] = nums[j];

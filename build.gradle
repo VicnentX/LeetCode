@@ -16,5 +16,7 @@ version = '1.0'
 
 dependencies {
   compile 'com.google.guava:guava:27.0-jre'
- }
+    // https://mvnrepository.com/artifact/org.json/json
+    compile group: 'org.json', name: 'json', version: '20180813'
+}
 

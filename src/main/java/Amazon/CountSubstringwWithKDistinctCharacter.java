@@ -62,9 +62,50 @@ public class CountSubstringwWithKDistinctCharacter {
         return min;
     }
 
+    public int countSubtringO_n(String s , int k) {
+        int ret = 0;
+        int n = s.length();
+        int[] dict = new int[256];
+        int start = 0 , i = 0 , end = 0 , size = 0;
+        for (end = 0 ; end < n ; ++end) {
+            char c = s.charAt(end);
+            ++dict[c];
+            if (dict[c] == 1) {
+                ++size;
+            }
+            //find i position;
+            if (size == k) {
+                while(dict[s.charAt(i)] > 1) {
+                    --dict[s.charAt(i)];
+                    ++i;
+                }
+                //update ret
+                ret += (i - start + 1);
+            }
+            //move start and i
+            if (size > k) {
+                start = i + 1;
+                --dict[s.charAt(i)];
+                ++i;
+                while(dict[s.charAt(i)] > 1) {
+                    --dict[s.charAt(i)];
+                    ++i;
+                }
+                --size;
+                ret += (i - start + 1);
+            }
+        }
+        return ret;
+    }
+
+
     public static void main (String[] args) {
         CountSubstringwWithKDistinctCharacter cs = new CountSubstringwWithKDistinctCharacter();
         System.out.println(cs.countSubtring("ababc" , 2));
+        System.out.println(cs.countSubtring("aaaa" , 1));
+        System.out.println("________________________");
+        System.out.println(cs.countSubtringO_n("ababc" , 2));
+        System.out.println(cs.countSubtringO_n("aaaa" , 1));
     }
 }
 

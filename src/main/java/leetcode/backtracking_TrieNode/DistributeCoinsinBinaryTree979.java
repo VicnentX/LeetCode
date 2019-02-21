@@ -53,21 +53,38 @@ public class DistributeCoinsinBinaryTree979 {
         }
     }
 
-    int ret = 0;
+    private int ret;
     public int distributeCoins(TreeNode root) {
-        dfs (root);
+        dfs(root);
         return ret;
     }
-    private int dfs (TreeNode root) {
+    private int dfs(TreeNode root) {
         if (root == null) return 0;
-
-        int coin = dfs(root.left) + dfs(root.right);
-        //this node need one coin so the amount need to be transfered between this node with its parent
-        //coin is positive that means transfer coin to its parent , negative that means need coin from its parent
-        coin += root.val - 1;
-        //add to the ret;
-        ret += Math.abs(coin);
-        //
-        return coin;
+        int left = dfs(root.left);
+        int right = dfs(root.right);
+        ret += Math.abs(left) + Math.abs(right);
+        return root.val - 1 + left + right;
     }
+
+
+    //without helper
+    public int distributeCoinsWithoutHelper(TreeNode root) {
+        if (root == null) return 0;
+        int ret = 0;
+        if (root.left != null) {
+            ret += distributeCoins(root.left);
+            root.val += root.left.val - 1;
+            ret += Math.abs(root.left.val - 1);
+        }
+        if (root.right != null) {
+            ret += distributeCoins(root.right);
+            root.val += root.right.val - 1;
+            ret += Math.abs(root.right.val - 1);
+        }
+        return ret;
+
+    }
+
+
+
 }
