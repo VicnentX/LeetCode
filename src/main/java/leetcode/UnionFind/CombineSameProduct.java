@@ -49,12 +49,23 @@ public class CombineSameProduct {
         return cnt;
     }
     private int find(int[] roots , int id){
-        while(roots[id] != id){
-            roots[id] = roots[roots[id]];
-            id = roots[id];
-        }
-        return id;
+        //method1 to implement
+//        while(roots[id] != id){
+//            roots[id] = roots[roots[id]];
+//            id = roots[id];
+//        }
+//        return id;
+
+        //这两种方法还是有很大不同的
+        //感觉第二种远比第一种好，因为path上面每个点都和最上面的root链接在了一起。
+
+        //method 2 to implement
+        if (roots[id] == id) return id;
+        roots[id] = find(roots , roots[id]);
+        return roots[id];
     }
+
+
 
     public static void main(String[] args){
         CombineSameProduct cs = new CombineSameProduct();

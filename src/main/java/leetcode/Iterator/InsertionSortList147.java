@@ -1,4 +1,4 @@
-package leetcode.ListNode_or_TreeNode;
+package leetcode.Iterator;
 
 /*
 Sort a linked list using insertion sort.

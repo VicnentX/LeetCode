@@ -48,8 +48,43 @@ public class PermutationsII47 {
         }
     }
 
+
+    public List<List<Integer>> permuteUniqueqw(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> path = new ArrayList<>();
+        boolean[] visited = new boolean[nums.length];
+        dfs(nums, result, path, visited);
+        return result;
+    }
+    private void dfs(int[] nums, List<List<Integer>> result, List<Integer> path, boolean[] visited) {
+        //base case
+        if (path.size() == nums.length) {
+            result.add(new ArrayList<>(path));
+            return;
+        }
+        //general case;
+        Integer pre = null;
+        for (int i = 0; i < nums.length; i++) {
+            if (pre != null && pre == nums[i]) {
+                continue;
+            }
+            if (!visited[i] && (pre == null || pre != nums[i]) ) {
+                path.add(nums[i]);
+                visited[i] = true;
+                dfs(nums, result, path, visited);
+                visited[i] = false;
+                path.remove(path.size() - 1);
+                pre = nums[i];
+            }
+        }
+    }
+
     public static void main (String[] args) {
         PermutationsII47 p2 = new PermutationsII47();
         System.out.println(p2.permuteUnique(new int[] {1,1,2}));
+        System.out.println(p2.permuteUniqueqw(new int[] {1,1,2}));
+        System.out.println(p2.permuteUnique(new int[] {1,2,3,2}));
+        System.out.println(p2.permuteUniqueqw(new int[] {1,2,3,2}));
     }
 }
