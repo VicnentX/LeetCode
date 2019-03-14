@@ -43,7 +43,7 @@ public class ShoppingOffers638 {
         return dfs(price , special , needs , needs.size() , map);
     }
 
-    private int dfs (List<Integer> price , List<List<Integer>> special, List<Integer> needs , int n , Map<List<Integer> , Integer> map) {
+    private int dfs (List<Integer> price , List<List<Integer>> special , List<Integer> needs, int n , Map<List<Integer> , Integer> map) {
         if (map.containsKey(needs)) {
             return map.get(needs);
         }
@@ -54,25 +54,25 @@ public class ShoppingOffers638 {
         }
 
         for (List<Integer> offer : special) {
-            List<Integer> tem = new ArrayList<>();
-            for (int j = 0 ; j < offer.size() - 1 ; ++j) {
-                if (offer.get(j) > needs.get(j)) {
-                    tem = null;
+            List<Integer> newNeeds = new ArrayList<>();
+            for (int i = 0 ; i < n ; ++i) {
+                if (offer.get(i) > needs.get(i)) {
+                    newNeeds = null;
                     break;
                 }
-                tem.add(needs.get(j) - offer.get(j));
+                newNeeds.add(needs.get(i) - offer.get(i));
             }
-            if (tem != null) {
-                minCost = Math.min(minCost , offer.get(offer.size() - 1) + dfs (price , special , tem , n , map));
+            if (newNeeds != null) {
+                minCost = Math.min (minCost , offer.get(n) + dfs(price , special , newNeeds , n , map));
             }
         }
 
         map.put(needs , minCost);
+
         return minCost;
     }
 
     public static void main (String[] args) {
         ShoppingOffers638 so = new ShoppingOffers638();
-
     }
 }

@@ -1,16 +1,28 @@
 package COEN379;
 
-import java.util.*;
-
-
-
-//why it is linear time
-//
-public class zalgorithm {
+public class IfSIsConcatenationOfSomeT {
+    public boolean IsConcatenation(String s) {
+        int[] z = getZarr(s);
+        int n = z.length;
+        int[] concate = new int[n];
+        for (int i = 0 ; i < n ; ++i) {
+            concate[i] = i;
+        }
+        for (int i = 1 ; i < n ; ++i) {
+            if (z[i] < concate[i]) {
+                concate[i] = 0;
+            } else { //z[i] >= concate[i]
+                if (concate[i] + i == n) {
+                    return true;
+                }
+                concate[i + concate[i]] = concate[i];
+            }
+        }
+        return false;
+    }
 
     // Fills Z array for given string str[]
     private int[] getZarr(String str) {
-
         int[] Z = new int[str.length()];
         int n = str.length();
 
@@ -69,25 +81,17 @@ public class zalgorithm {
         return Z;
     }
 
-    public void z (String t , String p) {
-        String s = p + "#" + t;
-        int[] z = getZarr(s);
-        int n = t.length();
-        int m = p.length();
-
-        for (int i = m + 1  ; i <= n + 1 ; ++i) {
-            if (z[i] == m) {
-                System.out.println("index could be " + (i - m - 1) + " ");
-            }
-        }
-    }
-
     public static void main (String[] args) {
-        zalgorithm za = new zalgorithm();
-        for (int i : za.getZarr("aaa#aaaa")) {
-            System.out.print(i + " ");
+        IfSIsConcatenationOfSomeT concate = new IfSIsConcatenationOfSomeT();
+        System.out.println(concate.IsConcatenation("abaabaabaabaaba"));
+        System.out.println(concate.IsConcatenation("aaa"));
+        System.out.println(concate.IsConcatenation("aaaa"));
+        System.out.println("___________________________");
+        System.out.println("Z value of 'abaabaabaabc' as below : ");
+        for (int k : concate.getZarr("abaabaabaabc")) {
+            System.out.print(k + " ");
         }
-        System.out.println("\n____________");
-        za.z("aaaa" , "aaa");
+        System.out.println();
+        System.out.println(concate.IsConcatenation("abaabaabaabc"));
     }
 }
