@@ -4,12 +4,13 @@ public class Find_The_Longest_Suffix_Of_S_that_Is_A_Prefix_Of_T {
     public int FindLongestSuffix(String s , String t) {
         int n = s.length();
         int m = t.length();
-        int[] k = compute_k(s + '#' + t);
-        int longest = 0;
-        for (int i = m + 1 ; i < n + m + 1 ; ++i) {
-            longest = Math.max(longest , k[i]);
-        }
-        return longest;
+        int[] k = compute_k(t + '#' + s);
+//        int longest = 0;
+//        for (int i = m + 1 ; i < n + m + 1 ; ++i) {
+//            longest = Math.max(longest , k[i]);
+//        }
+//        return longest;
+        return k[m + n];
     }
 
     private int[] compute_k (String s) {
@@ -81,5 +82,6 @@ public class Find_The_Longest_Suffix_Of_S_that_Is_A_Prefix_Of_T {
         Find_The_Longest_Suffix_Of_S_that_Is_A_Prefix_Of_T fst
                 = new Find_The_Longest_Suffix_Of_S_that_Is_A_Prefix_Of_T();
         System.out.println(fst.FindLongestSuffix("abcde" , "abc"));
+        System.out.println(fst.FindLongestSuffix("abcdeabcde" , "abcde"));
     }
 }

@@ -5,6 +5,8 @@ import java.util.*;
 //suppose that all characters in the pattern p are distinct .
 //show how to accelerate to run in time O(n) on an n-character text t
 
+//这个算法就是找出所有的
+
 public class DistinctNaiveStringMatcher {
     public void allOccurrenceShift(String t , String p) {
         //do have to hash it anymore

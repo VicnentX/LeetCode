@@ -71,3 +71,35 @@ public class BinarySearchTreeIterator173 {
         return !stack.isEmpty();
     }
 }
+
+/*
+class BSTIterator {
+
+    Stack<TreeNode> stack;
+
+    public BSTIterator(TreeNode root) {
+        stack = new Stack<>();
+        while (root != null) {
+            stack.push(root);
+            root = root.left;
+        }
+    }
+
+    @return the next smallest number
+    public int next() {
+        TreeNode cur = stack.pop();
+        int ret = cur.val;
+        cur = cur.right;
+        while (cur != null) {
+            stack.push(cur);
+            cur = cur.left;
+        }
+        return ret;
+    }
+
+        @return whether we have a next smallest number
+        public boolean hasNext() {
+            return !stack.isEmpty();
+        }
+    }
+ */
