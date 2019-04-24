@@ -1,0 +1,13 @@
+design a load balancer
+
+eg. there is N servers and everytime just one request to a website
+one of the servers will deal with this request.
+
+so
+
+method1
+design a PriorityQueue to store a pair (id of server , usage frequency)
+
+method2
+use LinkedHashMap to solve this problem , everytime choose the first element of the map and LRU it.
+

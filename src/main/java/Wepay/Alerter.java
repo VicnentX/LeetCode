@@ -45,5 +45,60 @@ with an average more than 2.5 times larger.
 
  */
 
+import java.util.*;
+
 public class Alerter {
+    public boolean isAlerter (List<Integer> times , int k , double gain) {
+        //k is the size of windows
+        if (times.size() == 0 || times.size() < k) return false;
+        int n = times.size();
+        double[] avg = new double[n - k + 1];
+        // avg[i] is the average of window whose beginning index is i
+        int sum = 0;
+        //calculate slide window average , and text the second condition
+        int i ;
+        for (i = 0 ; i < k ; ++i) {
+            sum += times.get(i);
+        }
+        avg[i - k] = sum * 1.0 / k;
+        double minAvg = avg[i - k];
+        for(; i < n ; ++i) {
+            sum = sum - times.get(i - k) + times.get(i);
+            avg[i - k + 1] = sum * 1.0 / k;
+            if (avg[i - k + 1] / minAvg > gain) {
+                return true;
+            }
+            minAvg = Math.min(minAvg , avg[i - k + 1]);
+        }
+        //calculate slide window max of avg and test the first condition
+        Deque<Integer> queue = new LinkedList<>();//存的是avg的index
+        for(i = 0 ; i <= n - k ; ++i) {
+            if (!queue.isEmpty() && queue.peek() == i - k) {
+                queue.poll();
+            }
+            while (!queue.isEmpty() && avg[i] >= avg[queue.peekLast()]) {
+                queue.removeLast();
+            }
+            queue.add(i);
+            if (times.get(i) / avg[queue.peek()] > gain) return true;
+        }
+
+        //这里之后已经没有avg［i］了
+        for ( ; i < n ; ++i) {
+            if (!queue.isEmpty() && queue.peek() == i - k) {
+                queue.poll();
+            }
+            if (times.get(i) / avg[queue.peek()] > gain) return true;
+        }
+
+        //all alert requirement has not been met
+        return false;
+    }
+
+    public static void main (String[] args) {
+        Alerter alerter = new Alerter();
+        System.out.println(alerter.isAlerter(new ArrayList<>(Arrays.asList(1,2,100,2,2)) , 3 , 1.5));
+        System.out.println(alerter.isAlerter(new ArrayList<>(Arrays.asList(1,2,4,2,2)) , 3 , 2));
+        System.out.println(alerter.isAlerter(new ArrayList<>(Arrays.asList(10000,2,100,99,2)) , 3 , 1.1));
+    }
 }
