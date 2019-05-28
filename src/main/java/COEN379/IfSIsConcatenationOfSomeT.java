@@ -21,6 +21,17 @@ public class IfSIsConcatenationOfSomeT {
         return false;
     }
 
+    public boolean IsIsConcatenation2(String s) {
+        int[] z = getZarr(s);
+        int n = z.length;
+        for (int i = 1 ; i < n ; ++i) {
+            if (z[i] + i == n && z[i] % i == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Fills Z array for given string str[]
     private int[] getZarr(String str) {
         int[] Z = new int[str.length()];
@@ -83,9 +94,16 @@ public class IfSIsConcatenationOfSomeT {
 
     public static void main (String[] args) {
         IfSIsConcatenationOfSomeT concate = new IfSIsConcatenationOfSomeT();
+        System.out.println("isCon result: ");
         System.out.println(concate.IsConcatenation("abaabaabaabaaba"));
         System.out.println(concate.IsConcatenation("aaa"));
         System.out.println(concate.IsConcatenation("aaaa"));
+
+        System.out.println("isisCon2 result: ");
+        System.out.println(concate.IsIsConcatenation2("abaabaabaabaaba"));
+        System.out.println(concate.IsIsConcatenation2("aaa"));
+        System.out.println(concate.IsIsConcatenation2("aaaa"));
+
         System.out.println("___________________________");
         System.out.println("Z value of 'abaabaabaabc' as below : ");
         for (int k : concate.getZarr("abaabaabaabc")) {
