@@ -1,40 +1,88 @@
-package COEN379;
+package leetcode.string;
 
-public class IfSIsConcatenationOfSomeT {
+import java.util.*;
+
+/*
+For strings S and T, we say "T divides S" if and only if S = T + ... + T  (T concatenated with itself 1 or more times)
+
+Return the largest string X such that X divides str1 and X divides str2.
 
 
-    public boolean IsConcatenation(String s) {
-        int[] z = getZarr(s);
-        int n = z.length;
-        int[] concate = new int[n];
-        for (int i = 0 ; i < n ; ++i) {
-            concate[i] = i;
+
+Example 1:
+
+Input: str1 = "ABCABC", str2 = "ABC"
+Output: "ABC"
+Example 2:
+
+Input: str1 = "ABABAB", str2 = "ABAB"
+Output: "AB"
+Example 3:
+
+Input: str1 = "LEET", str2 = "CODE"
+Output: ""
+
+
+Note:
+
+1 <= str1.length <= 1000
+1 <= str2.length <= 1000
+str1[i] and str2[i] are English uppercase letters.
+ */
+
+
+
+public class GreatestCommonDivisorofStrings1071 {
+    public String gcdOfStrings(String s1, String s2) {
+        String s3 = s1 + s2;
+        String s4 = s2 + s1;
+        if (!s3.equals(s4)) return "";
+        int common_len = gcd(s1.length(), s2.length());
+        return s1.substring(0, common_len);
+    }
+
+    private int gcd(int a, int b) {
+        if (b == 0) {
+            return a;
         }
-        for (int i = 1 ; i < n ; ++i) {
-            if (z[i] < concate[i]) {
-                concate[i] = 0;
-            } else { //z[i] >= concate[i]
-                if (concate[i] + i == n) {
-                    return true;
-                }
-                concate[i + concate[i]] = concate[i];
-            }
-        }
-        return false;
+        return gcd(b, a%b);
     }
 
 
-    //    这题老师方法很简便 没有必要像我那么繁琐
 
-    public boolean IsIsConcatenation2(String s) {
-        int[] z = getZarr(s);
-        int n = z.length;
-        for (int i = 1 ; i < n ; ++i) {
-            if (z[i] + i == n && z[i] % i == 0) {
-                return true;
+//    这题酸的是最长的元string 而我下面这个方法
+//    用到了z algorithm
+//
+
+    public String gcdOfStrings_Z_algorithm(String s1, String s2) {
+
+        int len1 = s1.length();
+        int len2 = s2.length();
+        TreeSet<Integer> set1 = IsIsConcatenation2(s1);
+        TreeSet<Integer> set2 = IsIsConcatenation2(s2);
+        set1.retainAll(set2);
+
+        TreeSet<Integer> treeReverse = (TreeSet) set1.descendingSet();
+
+        for (int i : treeReverse) {
+            if (s1.substring(0,i).equals(s2.substring(0,i))) {
+                return s1.substring(0,i);
             }
         }
-        return false;
+        return "";
+    }
+
+    private TreeSet<Integer> IsIsConcatenation2(String s) {
+        int[] z = getZarr(s);
+        int n = z.length;
+        TreeSet<Integer> set = new TreeSet<>();
+        for (int i = 1 ; i < n ; ++i) {
+            if (z[i] + i == n && z[i] % i == 0) {
+                set.add(i);
+            }
+        }
+        set.add(n);
+        return set;
     }
 
     // Fills Z array for given string str[]
@@ -98,23 +146,7 @@ public class IfSIsConcatenationOfSomeT {
     }
 
     public static void main (String[] args) {
-        IfSIsConcatenationOfSomeT concate = new IfSIsConcatenationOfSomeT();
-        System.out.println("isCon result: ");
-        System.out.println(concate.IsConcatenation("abaabaabaabaaba"));
-        System.out.println(concate.IsConcatenation("aaa"));
-        System.out.println(concate.IsConcatenation("aaaa"));
-
-        System.out.println("isisCon2 result: ");
-        System.out.println(concate.IsIsConcatenation2("abaabaabaabaaba"));
-        System.out.println(concate.IsIsConcatenation2("aaa"));
-        System.out.println(concate.IsIsConcatenation2("aaaa"));
-
-        System.out.println("___________________________");
-        System.out.println("Z value of 'abaabaabaabc' as below : ");
-        for (int k : concate.getZarr("abaabaabaabc")) {
-            System.out.print(k + " ");
-        }
-        System.out.println();
-        System.out.println(concate.IsConcatenation("abaabaabaabc"));
+        GreatestCommonDivisorofStrings1071 gc = new GreatestCommonDivisorofStrings1071();
+        System.out.println(gc.gcdOfStrings("abcabc", "abcabcabc"));
     }
 }

@@ -83,5 +83,6 @@ public class Find_The_Longest_Suffix_Of_S_that_Is_A_Prefix_Of_T {
                 = new Find_The_Longest_Suffix_Of_S_that_Is_A_Prefix_Of_T();
         System.out.println(fst.FindLongestSuffix("abcde" , "abc"));
         System.out.println(fst.FindLongestSuffix("abcdeabcde" , "abcde"));
+        System.out.println(fst.FindLongestSuffix("abababab" , "abab"));
     }
 }
