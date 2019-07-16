@@ -1,4 +1,4 @@
-package TestShangXueTang;
+package TestShangXueTang.TestSuperSub;
 
 class FatherClass {
     public int value;

@@ -1,4 +1,4 @@
-package TestShangXueTang;
+package TestShangXueTang.TestSuperSub;
 
 class SuperClass {
     private int n;
@@ -22,6 +22,8 @@ class SubClass extends SuperClass {
     }
 
     SubClass(int n) {
+        //when i do not put super or super(n) here, that means i put super() here.
+        super(n);
         System.out.println("subclass : " + n);
         this.n = n;
     }

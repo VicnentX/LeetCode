@@ -1,4 +1,4 @@
-package TestShangXueTang;
+package TestShangXueTang.TestOverrideMethods;
 
 class Person {
     private String name;
