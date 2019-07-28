@@ -92,13 +92,13 @@ public class MinimumCostTreeFromLeafValues1130 {
         stack.push(Integer.MAX_VALUE);
         int ret = 0;
         for (int i : A) {
-            while (stack.peek() <= i) {
+            while (stack.peek() < i) {
                 int mid = stack.pop();
-                ret += mid * Math.max(i , stack.peek());
+                ret += mid * Math.min(i , stack.peek());
             }
             stack.push(i);
         }
-        if (stack.size() > 2) {
+        while (stack.size() > 2) {
             ret += stack.pop() * stack.peek();
         }
         return ret;
@@ -107,5 +107,7 @@ public class MinimumCostTreeFromLeafValues1130 {
     public static void main(String[] args) {
         MinimumCostTreeFromLeafValues1130 mc = new MinimumCostTreeFromLeafValues1130();
         System.out.println(mc.mctFromLeafValues(new int[] {1,2,3,5,6,7,8,6,5,4,3,2,3,4}));
+        System.out.println(mc.mctFromLeafValues(new int[] {6,2,4}));
+
     }
 }
