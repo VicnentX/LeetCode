@@ -35,7 +35,11 @@ public class FriendCircles547 {
         return cnt;
     }
     private int find(int[] roots , int id){
+//        if (roots[id] == id) return id;
+//        return find(roots, roots[id]);
+
         if (roots[id] == id) return id;
-        return find(roots, roots[id]);
+        roots[id] = find(roots, roots[id]);
+        return roots[id];
     }
 }

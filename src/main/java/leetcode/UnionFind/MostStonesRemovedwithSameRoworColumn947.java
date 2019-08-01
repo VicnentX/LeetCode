@@ -60,11 +60,15 @@ public class MostStonesRemovedwithSameRoworColumn947 {
         return n - cnt;
     }
     private int findRoot(int id , int[] roots) {
-        while (roots[id] != id) {
-            roots[id] = roots[roots[id]];
-            id = roots[id];
-        }
-        return id;
+//        while (roots[id] != id) {
+//            roots[id] = roots[roots[id]];
+//            id = roots[id];
+//        }
+//        return id;
+
+        if (roots[id] == id) return id;
+        roots[id] = findRoot( roots[id] , roots);
+        return roots[id];
     }
 
     public static void main (String[] args) {

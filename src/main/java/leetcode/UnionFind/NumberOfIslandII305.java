@@ -121,11 +121,14 @@ public class NumberOfIslandII305 {
 
 
     private int find(int[] roots , int id) {
-        while (id != roots[id]) {
-            roots[id] = roots[roots[id]];
-            id = roots[id];
-        }
-        return id;
+//        while (id != roots[id]) {
+//            roots[id] = roots[roots[id]];
+//            id = roots[id];
+//        }
+//        return id;
+        if (roots[id] == id) return id;
+        roots[id] = find(roots, roots[id]);
+        return roots[id];
     }
     //Input: m = 3, n = 3, positions = [[0,0], [0,1], [1,2], [2,1]]
     //Output: [1,1,2,3]

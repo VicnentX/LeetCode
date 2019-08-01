@@ -29,10 +29,14 @@ public class GraphValidTree261 {
         return true;
     }
     private int  find(int[] roots , int id){
-        while(roots[id] != id){
-            roots[id] = roots[roots[id]];
-            id = roots[id];
-        }
-        return id;
+//        while(roots[id] != id){
+//            roots[id] = roots[roots[id]];
+//            id = roots[id];
+//        }
+//        return id;
+
+        if (roots[id] == id) return id;
+        roots[id] = find(roots, roots[id]);
+        return roots[id];
     }
 }
