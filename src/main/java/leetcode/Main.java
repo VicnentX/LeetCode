@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 public class Main {
@@ -18,5 +20,13 @@ public class Main {
         String home = "CA";
 
         System.out.println(String.format("this is %s and he is in %s", name, home));
+
+
+        final Map<Integer , Integer> processOrder = new HashMap<Integer, Integer>() {{
+            put(1, 1);
+            put(2, 2);
+            put(3, 3);
+        }};
+        System.out.println(processOrder.containsKey(null));
     }
 }

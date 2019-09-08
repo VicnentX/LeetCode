@@ -1,4 +1,4 @@
-package twitter;
+package twitter.twitter_2019;
 
 public class NoPairsAllowed {
     public int[] replacepairs(int n , String[] s){
