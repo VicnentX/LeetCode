@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class ds {
+public class PurchaseShareFromWebNotMine {
     public int sharePurchase(String s) {
         int pair = 0;
         int len = s.length();
@@ -51,7 +51,7 @@ public class ds {
     }
 
     public static void main(String[] args) {
-        ds ds = new ds();
+        PurchaseShareFromWebNotMine ds = new PurchaseShareFromWebNotMine();
         System.out.println(ds.sharePurchase("ABBCZBAC"));
         System.out.println(ds.sharePurchase("ABBZBA"));
     }

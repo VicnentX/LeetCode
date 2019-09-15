@@ -32,7 +32,7 @@ public class MostCommonWord {
 
     public static void main(String[] args){
         MostCommonWord mc=new MostCommonWord();
-        System.out.println(mc.mostCommonWord("ball, BALL.hit Hit HIT hit , s",new String[]{"hit","ds"}));
+        System.out.println(mc.mostCommonWord("ball, BALL.hit Hit HIT hit , s",new String[]{"hit","PurchaseShareFromWebNotMine"}));
 
 
     }

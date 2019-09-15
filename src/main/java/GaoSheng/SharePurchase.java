@@ -11,6 +11,7 @@ public class SharePurchase {
     public int analyzeInvestments(String s) {
         final int N = s.length();
         int cnt = 0;
+        //define the map(letter, list of index)
         Map<Character, LinkedList<Integer>> map = new HashMap<>();
         Set<Character> set = new HashSet<Character>(){{
             add('A');
@@ -18,6 +19,7 @@ public class SharePurchase {
             add('C');
         }};
 
+        // build the map
         for (int i = 0 ; i < N ; ++i) {
             char c = s.charAt(i);
             if (set.contains(c)) {
@@ -26,9 +28,14 @@ public class SharePurchase {
             }
         }
 
-        if (!map.containsKey('A') || !map.containsKey('B') || !map.containsKey('C'))
-            return cnt;
+        //check if A B C contains
+        for (char c: set) {
+            if (!map.containsKey(c)) {
+                return cnt;
+            }
+        }
 
+        //calculate the result
         for (char c : s.toCharArray()) {
             cnt += validCntFromC(map, N);
             if (set.contains(c)) {
