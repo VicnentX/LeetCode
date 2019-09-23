@@ -11,17 +11,6 @@ public class MostLikeMusicStyle {
     public Map<String, List<String>> getFaroriteMap(Map<String, List<String>> nameBookMap, Map<String, List<String>> typeBookMap) {
         Map<String, List<String>> nameListTypeMap = new HashMap<>();
 
-        if (nameBookMap.size() == 0) {
-            return nameListTypeMap;
-        }
-
-        if (typeBookMap.size() == 0) {
-            for (String name: nameBookMap.keySet()) {
-                nameListTypeMap.put(name, new ArrayList<>());
-            }
-            return nameListTypeMap;
-        }
-
         //get the map of (book, type)
         Map<String, String> bookTypeMap = new HashMap<>();
         for (String type: typeBookMap.keySet()) {
