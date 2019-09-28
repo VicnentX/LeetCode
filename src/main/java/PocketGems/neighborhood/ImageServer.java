@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 /**
- * Image Server (IS).
+ * Image Server6 (IS).
  */
 final class ImageServer {
   HashMap<PlacePair, String> imageUrls;

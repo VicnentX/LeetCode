@@ -13,7 +13,7 @@ class Runner {
     Neighborhood n = new Neighborhood(pds, is);
 
     while (true) {
-      System.out.println("~~~~~~~~~~~A new Server is running.!!");
+      System.out.println("~~~~~~~~~~~A new Server6 is running.!!");
       System.out.println("***: " + pds.getPlaceData("Starbucks"));
       System.out.println("***: " + pds.getPlaceData("Starbucks", new LatLng(100, -200)));
       System.out.println("***: " + is.getImageForPlace("Starbucks", new LatLng(100, -200)));
@@ -27,7 +27,7 @@ class Runner {
         Thread.sleep(11000);
       } catch (InterruptedException e) {
         e.printStackTrace();
-        System.out.println("~~~~~~~~~~~Server stops.");
+        System.out.println("~~~~~~~~~~~Server6 stops.");
       }
     }
   }

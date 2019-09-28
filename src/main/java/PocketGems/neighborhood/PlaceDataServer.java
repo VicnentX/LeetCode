@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.*;
 
 /**
- * Place Data Server (PDS).
+ * Place Data Server6 (PDS).
  */
 public final class PlaceDataServer {
   HashMap<String, List<PlaceData>> places;

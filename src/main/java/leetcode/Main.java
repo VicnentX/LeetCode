@@ -28,5 +28,12 @@ public class Main {
             put(3, 3);
         }};
         System.out.println(processOrder.containsKey(null));
+
+        String s = "[111:222]";
+        String[] ss = s.split(":");
+        System.out.println(ss.length);
+        for (String sss: ss) {
+            System.out.println(sss);
+        }
     }
 }
