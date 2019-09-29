@@ -1,5 +1,7 @@
 package intuit.Intuit2020;
 
+import java.util.*;
+
 /*
 1. 课程 -Ben
 第一题：输入学生的ID和他上的课程，找到每两个学生上的相同的课程。
@@ -16,4 +18,36 @@ package intuit.Intuit2020;
 
  */
 public class Courses1 {
+
+    public Map<String, List<String>> question1(String[][] studentCoursesPair) {
+        Map<String, List<String>> studentCoursesMap = new HashMap<>();
+        Map<String, List<String>> commonCoursesMap = new HashMap<>();
+        Set<String> students = new HashSet<>();
+
+        //fill the map
+        for (String[] pair: studentCoursesPair) {
+            String student = pair[0];
+            String course = pair[1];
+            students.add(student);
+            if (!studentCoursesMap.containsKey(pair[0])) {
+                studentCoursesMap.put(student, new ArrayList<>());
+            }
+            studentCoursesMap.get(student).add(course);
+        }
+
+        List<String> studentsList = new ArrayList<>(students);
+        final int N = studentsList.size();
+
+        for (int i = 0; i < N; ++i) {
+            for (int j = i + 1; j < N; ++j) {
+                List<String> list1 = studentCoursesMap.get(i);
+                List<String> list2 = studentCoursesMap.get(j);
+                list1.retainAll(list2);
+                commonCoursesMap.put(i + ", " + j, list1);
+            }
+        }
+
+        return commonCoursesMap;
+    }
+
 }
