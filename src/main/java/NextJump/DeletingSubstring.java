@@ -1,7 +1,36 @@
-package COEN379;
+package NextJump;
 
+/**
+ * 这题就是s每次从第一个t或者最后一个t， 将其拿去，
+ * 看做多可以拿几次
+ *
+ * 我的方法就是先用z algorithm 算出来每个index的longest prefix （是On的算法）
+ * 然后就看longest prefix = t。length 就可能是
+ * 因为这题拿掉就不能重复用了，
+ * 所以当=t.length的时候就将index往后移动t的长度 否则就移动1。。。。
+ * 看我总共可以得到几次 答案就是这数字了
+ *
+ */
 
-public class KMPBaseOnZAlogo {
+public class DeletingSubstring {
+    public int maxMoves(String s, String t) {
+        final int TARGET_LENGTH = t.length();
+        final int N = (t + "#" + s).length();
+        int[] k = compute_k(t + "#" + s);
+        int i = 0, cnt = 0;
+
+        while (i < N) {
+            if (k[i] == TARGET_LENGTH) {
+                cnt++;
+                i += TARGET_LENGTH;
+            } else {
+                i++;
+            }
+        }
+
+        return cnt;
+    }
+
     public int[] compute_k (String s) {
         int[] k = new int[s.length()];
         int n = s.length();
@@ -73,44 +102,8 @@ public class KMPBaseOnZAlogo {
         return Z;
     }
 
-
-
-    public void kmp (String t , String p) {
-        int[] k = compute_k(p); //preprocess
-        int n = t.length();
-        int m = p.length();
-        int s = 0;
-        int i = 0;
-
-        while (s < n) {
-            //compere
-            while (i < m && p.charAt(i) == t.charAt(s)) {
-                ++i;
-                ++s;
-            }
-            //either complete match or found a mismatch
-            if (i == 0) { //immediate mismatch
-                ++s;
-            } else {
-                if ( i == m ) {
-                    //complete match
-                    System.out.print(s - i + " ");
-                }
-                i = k[i - 1]; //shift y the longest suffix , 这个会越来越小 每次覆盖之前的
-            }
-        }
-    }
-
-    public static void main (String[] args) {
-        KMPBaseOnZAlogo kmp = new KMPBaseOnZAlogo();
-        System.out.println("z-value is as below : ");
-        for (int k : kmp.getZarr("SS#MISSISSIPPI")) {
-            System.out.print(k);
-        }
-        System.out.println("\n_________________________");
-        System.out.println("k-value is as below : ");
-        for (int k : kmp.getZarr("MISSISSIPPI")) {
-            System.out.print(k);
-        }
+    public static void main(String[] args) {
+        DeletingSubstring deletingSubstring = new DeletingSubstring();
+        System.out.println(deletingSubstring.maxMoves("bcbbc", "b"));
     }
 }

@@ -24,7 +24,7 @@ public class Boyer_Moore_Horspool {
                 ++s;
             } else {//there is a mismatch
                 s += Math.max(1 , m - 1 - r[text.charAt(s)]);
-                //这里相当于直接把pattern里面和s对应的最右边的那个charater移动到和s对齐。
+                //这里相当于直接把pattern里面和s对应的最右边的那个character移动到和s对齐。
             }
         }
     }
