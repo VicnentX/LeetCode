@@ -20,6 +20,9 @@ Seen this question in a real interview before?
 
  */
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The idea of this solution is from this page:http://www.geeksforgeeks.org/ugly-numbers/
  *
@@ -55,8 +58,30 @@ public class UglyNumberII264 {
         return k[n - 1];
     }
 
+    //变种的题目，就是给一个范围, 然后问里面哪些数是可以只由3，5来组成的
+    public int UglyNumbercnt(int left, int right) {
+        int cnt = 0;
+        if (left < 1 || left > right) return cnt;
+        int t3 = 0, t5 = 0;
+
+        List<Integer> k = new ArrayList<>();
+        k.add(1);
+
+        while (Math.min(k.get(t3) * 3, k.get(t5) * 5) <= right) {
+            int curMinValid = Math.min(k.get(t3) * 3, k.get(t5) * 5);
+            k.add(curMinValid);
+            if (curMinValid >= left) cnt++;
+            if (curMinValid == k.get(t3) * 3) t3++;
+            if (curMinValid == k.get(t5) * 5) t5++;
+        }
+
+        return cnt;
+    }
+
     public static void main(String[] args) {
         UglyNumberII264 uglyNumberII264 = new UglyNumberII264();
         System.out.println(uglyNumberII264.nthUglyNumber(12));
+
+        System.out.println(uglyNumberII264.UglyNumbercnt(200, 405));
     }
 }
