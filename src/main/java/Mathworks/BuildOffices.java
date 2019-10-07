@@ -51,7 +51,7 @@ import java.util.*;
 
 public class BuildOffices {
         // W for width, H for height, N for no of offices to build
-        int W, H, N;
+        final int W, H, N;
 
         // dx and dy value together gives (x,y)
         // which helps to move in 4 adjacent cells

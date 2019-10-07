@@ -1,0 +1,9 @@
+could anybody explains me why IIR filters do not have linear phase?
+The impulse response of a linear phase filter must be symmetric. If the impulse response is infinitely long, then the center of the impulse is an infinite distance away from the beginning, giving the symmetric IIR filter infinite delay.
+
+
+
+Linear phase is
+a property of a filter,
+where the phase response of the filter is a linear function of frequency.
+ The result is that all frequency components of the input signal are shifted in time (usually delayed) by the same constant amount (the slope of the linear function), which is referred to as the group delay. And consequently, there is no phase distortion due to the time delay of frequencies relative to one another.

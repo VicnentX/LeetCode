@@ -1,0 +1,35 @@
+final(lowercase) is a reserved keyword in java. We can’t use it as an identifier as it is reserved. We can use this keyword with variables, methods and also with classes. The final keyword in java has different meaning depending upon it is applied to variable, class or method.
+1. final with Variables : The value of variable cannot be changed once initialized.
+2. final with Class : The class cannot be subclassed. Whenever we declare any class as final, it means that we can’t extend that class or that class can’t be extended or we can’t make subclass of that class.
+3. final with Method : The method cannot be overridden by a subclass. Whenever we declare any method as final, then it means that we can’t override that method.
+
+_____________________
+
+finally keyword
+
+Just as final is a reserved keyword, so in same way finally is also a reserved keyword in java i.e, we can’t use it as an identifier. The finally keyword is used in association with a try/catch block and guarantees that a section of code will be executed, even if an exception is thrown. The finally block will be executed after the try and catch blocks, but before control transfers back to its origin.
+
+There are various cases when finally can be used. There are discussed below:
+
+Case 1 : Exceptions do not occur in the program
+Case 2 : Exception occurs and corresponding catch block matches
+Case 3 : Exception occurs and corresponding catch block not found/match
+
+Application of finally block: So basically the use of finally block is resource deallocation. Means all the resources such as Network Connections, Database Connections, which we opened in try block are needed to be closed, so that we won’t lose our resources as opened. So those resources are needed to be closed in finally block.
+
+___________________
+
+
+finalize method
+
+It is a method that the Garbage Collector always calls just before the deletion/destroying the object which is eligible for Garbage Collection, so as to perform clean-up activity. Clean-up activity means closing the resources associated with that object like Database Connection, Network Connection or we can say resource de-allocation. Remember it is not a reserved keyword.
+Once finalize method completes immediately Garbage Collector destroy that object. finalize method is present in Object class and its syntax is:
+
+protected void finalize throws Throwable{}
+Since Object class contains finalize method hence finalize method is available for every java class since Object is superclass of all java classes. Since it is available for every java class hence Garbage Collector can call finalize method on any java object
+Now, the finalize method which is present in Object class, has empty implementation, in our class clean-up activities are there, then we have to override this method to define our own clean-up activities.
+
+1 / instance may not be finalized
+2 / finalize() is not destructor method
+3 / finalize() is not deal with memory
+4 / depend on the memory availability

@@ -1,0 +1,19 @@
+As others have cogently pointed out,
+it doesn't matter.
+All logarithms differ from each other by a constant only dependent on the bases involved.
+Because these factors are constants,
+they are irrelevant for the purposes of asymptotic analysis. Second,
+as far determining the implied base, it depends on context.
+As a rough rule of thumb use the following:
+1. When a mathematician writes log n he means the natural logarithm.
+2. When a computer scientist writes log n he means base-two.
+3. When an engineer writes log n he means base-ten. These are usually true. – jason
+
+
+
+Oct 15 '09 at 1:50
+So you can think of it as O(log2X) = O(log10X)
+Also to mention that logarithms are related by some constant.
+
+So
+log₁₀(x) = log₂(x) / log₂(10)

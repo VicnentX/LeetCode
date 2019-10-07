@@ -1,0 +1,2 @@
+It is always a good practice to assign the pointer NULL to a pointer variable
+in case you do not have an exact address to be assigned.
