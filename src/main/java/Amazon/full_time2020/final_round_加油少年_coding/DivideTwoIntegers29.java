@@ -40,6 +40,11 @@ assume that your function returns 231 − 1 when the division result overflows.
  *
  * This is the full algorithm to perform division using bit manipulations. The sign also needs to be taken into consideration. And we still need to handle one overflow case: dividend = INT_MIN and divisor = -1.
  */
+
+
+/**
+ * 这题相当于吧res这个答案拆成1，2，4，8，16，32。。。这样的一个组合 加起来得到最后的res这个答案
+ */
 public class DivideTwoIntegers29 {
 
     //O(logn ^ 2)
