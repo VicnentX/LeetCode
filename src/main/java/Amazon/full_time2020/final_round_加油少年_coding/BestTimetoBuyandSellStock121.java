@@ -22,6 +22,17 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.
  */
 
 
+/**
+ * 这题就是只能买卖一次
+ * 第二题可以买卖多次 我的第二题也在GitHub里面 我同事还打印出来了 比如估计1，3，3，5 我就算作一次买卖 1-5 没有拆开
+ *
+ * 题目是高频买卖股票题，follow up是如果允许可以买卖多次该怎么解，
+ * 我想了半天只写了一个dfs的解法，
+ * 按他的说法最优能到O(n),
+ * 但是他想看我的thought process就让我写我说的dfs了。 dfs是不对的不用管他
+ */
+
+
 public class BestTimetoBuyandSellStock121 {
     public int maxProfit(int[] prices) {
         int maxProfit = 0;

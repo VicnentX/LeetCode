@@ -14,6 +14,73 @@ package Amazon.full_time2020.final_round_加油少年_coding;
  *
  */
 
+
+/**
+ *  这是z-algorithm的解释
+ *
+ *  The algorithm relies on a single, crucial invariant.
+ *  Iterate over the letters in the string (index  from  to ) and maintain an interval
+ *  which is the interval with maximum  such that
+ *  and  is a prefix-substring (if no such interval exists, just let ).
+ *  For , simply compute  and  by comparing  to .  is obtained during this process.
+ *
+ * Now, suppose the correct interval  for  and all of the  values up to .
+ * Compute  and the new  by the following steps:
+ *
+ * If , then there does not exist a prefix-substring of  that starts before
+ * and ends at or after . If such a substring existed,
+ * would have been the interval for that substring rather than its current value.
+ * Thus "reset" and compute a new  by comparing  to  and get  at the same time ().
+ *
+ * Otherwise, , so the current  extends at least to . Let .
+ * It is known that  because  matches  for at least  characters
+ * (they are in the  interval which is known to be a prefix-substring).
+ *
+ * If , then there is no longer prefix-substring starting at
+ * (or else  would be larger), meaning  and  stays the same.
+ * The latter is true because  only changes
+ * if there is a prefix-substring starting at  that extends beyond ,
+ * which is not the case here.
+ *
+ * If , then it is possible for  to match  for more than  characters (i.e. past position ).
+ * Thus, there's a need to update  by setting  and matching from  forward to obtain the new .
+ * Again,  is obtained during this process.
+ *
+ * The process computes all of the  values in a single pass over the string,
+ * so we're done. Correctness is inherent in the algorithm and is pretty intuitively clear.
+ *
+ * Time Complexity
+ *
+ * The algorithm runs in  time.
+ * Characters are never compared at positions less than 2 * n ,
+ * and every time a match is found,  is increased by one, so there are at most 2 * n comparisons.
+ */
+
+
+/**
+ * 这个是简单一些的解释 就是z-box【L，R】
+ *
+ * The idea is to maintain an interval [L, R] which is the interval with max R
+ * such that [L,R] is prefix substring (substring which is also prefix).
+ *
+ * Steps for maintaining this interval are as follows –
+ *
+ * 1) If i > R then there is no prefix substring that starts before i and
+ *    ends after i, so we reset L and R and compute new [L,R] by comparing
+ *    str[0..] to str[i..] and get Z[i] (= R-L+1).
+ *
+ * 2) If i <= R then let K = i-L,  now Z[i] >= min(Z[K], R-i+1)  because
+ *    str[i..] matches with str[K..] for atleast R-i+1 characters (they are in
+ *    [L,R] interval which we know is a prefix substring).
+ *    Now two sub cases arise –
+ *       a) If Z[K] < R-i+1  then there is no prefix substring starting at
+ *          str[i] (otherwise Z[K] would be larger)  so  Z[i] = Z[K]  and
+ *          interval [L,R] remains same.
+ *       b) If Z[K] >= R-i+1 then it is possible to extend the [L,R] interval
+ *          thus we will set L as i and start matching from str[R]  onwards  and
+ *          get new R then we will update interval [L,R] and calculate Z[i] (=R-L+1).
+ */
+
 public class Z_algorithm {
 
     public void printAllMatchStartingIndex(String p, String t) {
