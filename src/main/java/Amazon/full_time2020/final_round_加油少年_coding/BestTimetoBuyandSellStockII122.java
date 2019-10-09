@@ -27,6 +27,13 @@ Output: 0
 Explanation: In this case, no transaction is done, i.e. max profit = 0.
  */
 
+/**
+ * 我这个是1，3，3，5算一笔交易 当然拆成两笔是一样的
+ *
+ * 用当前的值 和 后面的值比较下 然后看
+ *
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +41,7 @@ public class BestTimetoBuyandSellStockII122 {
     public int maxProfit(int[] prices) {
         int totalProfit = 0;
         final int N = prices.length;
+        //这个是记录下 买点和买点 对于一笔交易
         List<Integer> buyInfo = new ArrayList<>();
         for (int i = 0; i < N - 1; ++i) {
             if (prices[i + 1] >= prices[i]) {

@@ -24,7 +24,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ *
+ * clarify:
+ *      is answer is unique?
+ *      123, 2
+ *      12 23 13 all could be the answer
+ *
+ *      need sort?
+ *
  * O(n) bucket sort
+ * this is an O(n) time complexity
  */
 
 public class TopKFrequentElements347 {

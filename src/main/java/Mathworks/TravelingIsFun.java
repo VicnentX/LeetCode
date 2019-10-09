@@ -8,6 +8,13 @@ package Mathworks;
  * destinationCities - each index i (where 0 <= i <= q) describes y for the ith pair of cities
  */
 
+
+/**
+ *  这题用uniFind可以解决
+ *
+ *  这两个for循环的设计很讨巧！！！
+ */
+
 public class TravelingIsFun {
     public int[] checkConnectionofPairs(int n, int g, int[] originCities, int[] destinationCities) {
         if (originCities.length != destinationCities.length || n <= 0) {

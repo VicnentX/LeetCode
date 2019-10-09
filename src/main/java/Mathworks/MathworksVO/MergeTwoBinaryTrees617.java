@@ -26,6 +26,13 @@ Merged tree:
 Note: The merging process must start from the root nodes of both trees.
  */
 
+
+/**
+ * 当 有一个为null时候 后面就和她没有关系了 所以可以这样写：
+ *         if (t1 == null) return t2;
+ *         if (t2 == null) return t1;
+ */
+
 public class MergeTwoBinaryTrees617 {
     public class TreeNode {
         int val;

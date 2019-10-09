@@ -22,6 +22,10 @@ import java.util.List;
 
 /**
  * dfs
+ *
+ * 就是只能用k个数 凑齐n 有多少种方法
+ *
+ * 数组是从1-n
  */
 
 public class CombinationSumIII216 {

@@ -36,18 +36,42 @@ Seen this question in a real interview before?
 public class FirstMissingPositive41 {
     public int firstMissingPositive(int[] nums) {
         final int N = nums.length;
+        //swap the array if needed
         for (int i = 0; i < N; ++i) {
             while(nums[i] > 0 && nums[i] <= N && nums[nums[i] - 1] != nums[i]) {
                 swap(nums, i, nums[i] - 1);
             }
         }
+        //check the missing positive number
         for (int i = 0; i < N; ++i) {
             if (nums[i] != i + 1) {
                 return i + 1;
             }
         }
+        //all the positive from 1 to N found , return N + 1
         return N + 1;
     }
+
+    public int firstMissingPositive3232(int[] nums) {
+        final int N = nums.length;
+        //swap the array if needed
+        for (int i = 0; i < N; ++i) {
+            while (nums[i] >= 1 && nums[i] <= N && nums[nums[i] - 1] != nums[i]) {
+                swap(nums, i, nums[i] - 1);
+            }
+        }
+        //check missing positive number
+        for (int i = 0; i < N; ++i) {
+            if (nums[i] != i + 1) {
+                return i + 1;
+            }
+        }
+
+        //all are found
+        return N + 1;
+    }
+
+
 
     private void swap(int[] nums, int i, int j) {
         int temp = nums[i];

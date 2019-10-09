@@ -58,7 +58,7 @@ public class CopyListwithRandomPointer138 {
     public Node copyRandomListWithSpace(Node head) {
         if (head == null) return null;
 
-        Map<Node, Node> map = new HashMap<Node, Node>();
+        Map<Node, Node> map = new HashMap<>();
 
         // loop 1. copy all the nodes
         Node node = head;

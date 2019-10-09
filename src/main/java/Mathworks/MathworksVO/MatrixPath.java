@@ -6,10 +6,21 @@ package Mathworks.MathworksVO;
 
  */
 
+
+/**
+ *  这题就是不用记录路基只要一个数字
+ *  base case 还是到了终点就算一条路径
+ *
+ *  clarify：
+ *      for one specific valid path, all the point only be accessed at most once?
+ *
+ *
+ */
+
 public class MatrixPath {
 
     private int pathCnt = 0;
-    int[][] dirs = new int[][] {{1,0}, {0, -1}, {-1, 0}, {0, 1}};
+    private int[][] dirs = new int[][] {{1,0}, {0, -1}, {-1, 0}, {0, 1}};
 
     public int countAllPath(int[][] grid) {
         final int M = grid.length;

@@ -25,6 +25,13 @@ Seen this question in a real interview before?
 
  */
 
+
+/**
+ * 60 占用5位 所以相当以把'hour"的val 往右移动6位 avoid overlap
+ * 然后 count的bit
+ * 满足条件就放到答案里面
+ */
+
 public class BinaryWatch401 {
     public List<String> readBinaryWatch(int num) {
         List<String> times = new ArrayList<>();

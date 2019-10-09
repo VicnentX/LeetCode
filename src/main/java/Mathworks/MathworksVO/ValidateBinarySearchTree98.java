@@ -34,6 +34,8 @@ Explanation: The root node's value is 5 but its right child's value is 4.
 
 /**
  * IN ORDER
+ * is the val integer?
+ *
  */
 
 public class ValidateBinarySearchTree98 {

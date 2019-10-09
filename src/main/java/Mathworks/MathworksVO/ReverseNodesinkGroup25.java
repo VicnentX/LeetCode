@@ -36,17 +36,18 @@ public class ReverseNodesinkGroup25 {
             cur = cur.next;
             cnt++;
         }
+        // just return head if cur != k (means do not need to reserve the left part)
         if (cnt == k) {
-            //this return cur will be the tail of previous k-length reversed list
             cur = reverseKGroup(cur, k);
-            //reverse now
+
             while (cnt-- > 0) {
-                ListNode temp = head.next;
+                ListNode next = head.next;
                 head.next = cur;
                 cur = head;
-                head = temp;
+                head = next;
             }
-            head =cur;
+
+            head = cur;
         }
         return head;
     }

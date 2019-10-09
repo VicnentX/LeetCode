@@ -22,6 +22,11 @@ nums.length will be between 1 and 50,000.
 nums[i] will be an integer between 0 and 49,999.
  */
 
+/**
+ * Definition of degree of an array
+ * unique answer?
+ */
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +34,7 @@ import java.util.Map;
 
 public class DegreeOfAnArray697 {
     public int findShortestSubArray(int[] nums) {
+        //map of number and its occurrence indexes
         Map<Integer, List<Integer>> numberIndexesPair = new HashMap<>();
         int minLen = Integer.MAX_VALUE;
         int maxOccurence = -1;

@@ -20,6 +20,18 @@ Seen this question in a real interview before?
 
  */
 
+
+/**
+ * clarify :
+ *  does order matter?
+ *  is there duplicate in the input?
+ *
+ *
+ *  must add * to avoid 11a + 1b against 1a + 11b
+ *
+ *
+ */
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

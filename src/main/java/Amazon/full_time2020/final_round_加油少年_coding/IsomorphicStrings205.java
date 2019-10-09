@@ -5,7 +5,8 @@ Given two strings s and t, determine if they are isomorphic.
 
 Two strings are isomorphic if the characters in s can be replaced to get t.
 
-All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.
+All occurrences of a character must be replaced with another character while preserving the order of characters.
+No two characters may map to the same character but a character may map to itself.
 
 Example 1:
 
@@ -23,6 +24,13 @@ Note:
 You may assume both s and t have the same length.
  */
 
+/**
+ * No two characters may map to the same character but a character may map to itself.
+ *
+ * 这个要求clarify的时候问清楚再动手写
+ *
+ */
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -35,7 +43,6 @@ public class IsomorphicStrings205 {
         Set<Character> charUsed = new HashSet<>();
 
         for (int i = 0; i < s.length(); ++i) {
-
 
             if (!map.containsKey(s.charAt(i))) {
 

@@ -56,7 +56,9 @@ public class CloneGraph133 {
     }
 
     private Node dfs(Node node, Map<Node, Node> map) {
+        //avoid memoization
         if (map.containsKey(node)) return map.get(node);
+        //clone
         Node clone = new Node(node.val, new ArrayList<>());
         map.put(node, clone);
         for (Node nb: node.neighbors) {

@@ -40,6 +40,8 @@ the answer is guaranteed to fit into signed 32-bit integer
  *
  * dp  问题
  * the combination grows with more kind of coins that could be used;
+ *
+ * dp[i] mean how many ways to collect i dollars
  */
 
 public class CoinChangeII518 {

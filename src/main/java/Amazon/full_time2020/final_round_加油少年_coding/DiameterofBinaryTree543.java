@@ -18,7 +18,11 @@ Note: The length of path between two nodes is represented by the number of edges
 
 /**
  * For every node,
- * length of longest path which pass it = MaxDepth of its left subtree + MaxDepth of its right subtree.
+ * length of longest path which pass it
+ * = MaxDepth of its left subtree + MaxDepth of its right subtree.
+ *
+ * 就是找出任意两个点的距离 然后取最大值
+ *
  */
 
 public class DiameterofBinaryTree543 {

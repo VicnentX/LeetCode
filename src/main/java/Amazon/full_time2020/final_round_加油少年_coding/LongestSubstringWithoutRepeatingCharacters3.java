@@ -32,9 +32,12 @@ import java.util.Map;
  * the basic idea is,
  * keep a hashmap which stores the characters in string as keys
  * and
- * their positions as values,
+ * their index as values,
  * and keep two pointers which define the max substring.
  * move the right pointer to scan through the string ,
+ *
+ * evertime check longest substring ending with s.charAt(i)
+ *
  * and meanwhile update the hashmap.
  * If the character is already in the hashmap,
  * then move the left pointer to the right of the same character last found.

@@ -47,6 +47,13 @@ Seen this question in a real interview before?
  * If a serialization is correct, diff should never be negative and diff will be zero when finished.
  */
 
+/**
+ * all non-null node provides 2 outdegree and 1 indegree (2 children and 1 parent), except root
+ * 就是来自父亲的算一根indegree 给children的算outdegree
+ * in degree mean minus
+ * out degree mean plus
+ */
+
 
 public class VerifyPreorderSerializationofaBinaryTree331 {
     public boolean isValidSerialization(String preorder) {
@@ -55,6 +62,23 @@ public class VerifyPreorderSerializationofaBinaryTree331 {
         for (String node: nodes) {
             if (--diff < 0) return false;
             if (!node.equals("#")) diff += 2;
+        }
+        return diff == 0;
+    }
+
+
+    /**
+     * 我想做的是 进来是加 出去是减
+     * @param preorder
+     * @return
+     */
+    public boolean isValidSerializationfdf(String preorder) {
+        String[] nodes = preorder.split(",");
+        int diff = -1;
+        for (String node: nodes) {
+            diff++;
+            if (diff > 0) return false;
+            if (!node.equals("#")) diff -= 2;
         }
         return diff == 0;
     }

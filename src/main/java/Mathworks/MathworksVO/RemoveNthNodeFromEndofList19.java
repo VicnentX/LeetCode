@@ -19,6 +19,13 @@ package Mathworks.MathworksVO;
  * Seen this question in a real interview before?
  */
 
+
+/**
+ * clarify:
+ *
+ * is n is always valid against the length of this linkedList?
+ */
+
 public class RemoveNthNodeFromEndofList19 {
     public class ListNode {
         int val;

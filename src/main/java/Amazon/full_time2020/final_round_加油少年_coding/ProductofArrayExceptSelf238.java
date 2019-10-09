@@ -19,7 +19,13 @@ public class ProductofArrayExceptSelf238 {
     //second for loop res[i] is the result = all left product * all right product
 
     /**
+     *
+     *
+     * clarify :
+     *      is there any 0 in the array?
      *  这种方法还可以avoid element = 0 的情况
+     *
+     *
      * @param nums
      * @return
      */
