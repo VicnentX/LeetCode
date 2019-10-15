@@ -1,4 +1,4 @@
-package Amazon;
+package Amazon.intern_2019;
 
 public class FindAllSubarrayWithSumLargerThanK {
     public int findnumbers(int[] nums , int k) {

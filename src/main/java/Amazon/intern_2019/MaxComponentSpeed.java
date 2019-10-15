@@ -1,4 +1,4 @@
-package Amazon;
+package Amazon.intern_2019;
 
 import java.util.*;
 

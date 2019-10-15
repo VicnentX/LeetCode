@@ -103,7 +103,7 @@ public class CriticalConnection {
                 graph.findCC(i, visited, disc, low, parent);
             }
         }
-        return new ArrayList<>();
+        return new ArrayList<>(ret);
     }
 
     public static void main(String[] args) {
@@ -117,7 +117,7 @@ public class CriticalConnection {
         List<Pair> ret = criticalConnection.findAllCriticalConnection(5, list);
         System.out.println(ret.size());
         for (Pair pair: ret) {
-            System.out.println(pair);
+            System.out.println(pair.p1 + "  " + pair.p2);
         }
     }
 

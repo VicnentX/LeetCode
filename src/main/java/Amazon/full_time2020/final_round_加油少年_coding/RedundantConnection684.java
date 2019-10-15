@@ -35,6 +35,10 @@ Update (2017-09-26):
 We have overhauled the problem description + test cases and specified clearly the graph is an undirected graph. For the directed graph follow up please see Redundant Connection II). We apologize for any inconvenience caused.
  */
 
+/**
+ * clarify
+ */
+
 public class RedundantConnection684 {
     public int[] findRedundantConnection(int[][] edges) {
         if (edges == null || edges.length == 0) return new int[]{};

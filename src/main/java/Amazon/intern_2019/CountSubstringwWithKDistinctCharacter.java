@@ -1,4 +1,4 @@
-package Amazon;
+package Amazon.intern_2019;
 
 /*
 given a string , to find the amount of SubstringwWithKDistinctCharacter
