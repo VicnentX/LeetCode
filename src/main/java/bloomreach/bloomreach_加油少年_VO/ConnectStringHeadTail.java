@@ -60,12 +60,92 @@ public class ConnectStringHeadTail {
         }
     }
 
+
+    /*
+    这个是姐夫的方法 我其实对于怎么去重还是没明白 先写在这里吧
+    最后一个例子结果应该是4 但是stackoverflow了 说明还是没有解决这个问题
+     */
+    public int solve(String[] strs) {
+        Map<Character, Set<Integer>> map = new HashMap<>();
+        //fill map of last char and all the index of string ending with this last char
+        for (int i = 0; i < strs.length; ++i) {
+            String s = strs[i];
+            char lastChar = s.charAt(s.length() - 1);
+            if (!map.containsKey(lastChar)) {
+                map.put(lastChar, new HashSet<>());
+            }
+            map.get(lastChar).add(i);
+        }
+
+        //ret map of index of string and value is a pair of max chains and it is visited or not
+        Map<Integer, Object[]> ret = new HashMap<>();
+        for (int i = 0; i < strs.length; ++i) {
+            ret.put(i, new Object[]{1, false});
+        }
+
+        for (int i = 0; i < strs.length; ++i) {
+            if ((boolean)ret.get(i)[1]) { //visited
+                continue;
+            }
+            dfs(i, strs, ret, map);
+        }
+
+        //get the result
+        int maxChain = 0;
+        for (Object[] pair: ret.values()) {
+            if ((int)pair[0] > maxChain) {
+                maxChain = (int)pair[0];
+            }
+        }
+
+        return maxChain;
+    }
+
+    private int dfs(int index, String[] strs, Map<Integer, Object[]> ret, Map<Character, Set<Integer>> map) {
+        int max_path = 0;
+        String s = strs[index];
+        char firstChar = s.charAt(0);
+
+        if (map.containsKey(firstChar)) {
+            for (int n: map.get(firstChar)) {
+                if (n == index) {
+                    continue;
+                }
+                if ((boolean)ret.get(n)[1]) {
+                    max_path = Math.max(max_path, (int)ret.get(n)[0]);
+                } else {
+                    dfs(n, strs, ret, map);
+                    max_path = Math.max(max_path, (int)ret.get(n)[0]);
+                }
+            }
+        }
+        ret.put(index, new Object[] {1 + max_path, true});
+
+        return max_path;
+    }
+
+
     public static void main(String[] args) {
         ConnectStringHeadTail connectStringHeadTail = new ConnectStringHeadTail();
+
+        System.out.println("fangfa 1--------------");
         //8
         //asdfghjk
         connectStringHeadTail.getLongestStringcChainAndCnt(new String[] {"asd", "dfg", "ghj", "ghjk"});
         System.out.println(deepLevel);
         System.out.println(longestString);
+
+
+
+        System.out.println("fangfa 2--------------");
+        //3
+        int ret = connectStringHeadTail.solve(new String[] {"abc", "cde", "efg"});
+        System.out.println(ret);
+        //3
+        ret = connectStringHeadTail.solve(new String[] {"abc", "cde", "efg","eddfg"});
+        System.out.println(ret);
+        //4
+        ret = connectStringHeadTail.solve(new String[] {"abc", "cde", "efg","eddfa", "akjip"});
+        System.out.println(ret);
     }
 }

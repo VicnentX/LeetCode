@@ -15,20 +15,22 @@ public class WeightBall {
 
     private int[] sumDP;
 
-    public int findHeavy(int[] balls_array) {
+    public int findHeavy(int[] nums) {
         // return index of the heavier ball
         int sum = 0;
-        sumDP = new int[balls_array.length];
-        for (int i = 0; i < balls_array.length; ++i) {
-            sum += balls_array[i];
+        sumDP = new int[nums.length];
+        for (int i = 0; i < nums.length; ++i) {
+            sum += nums[i];
             sumDP[i] = sum;
         }
-        return getIndex(balls_array, 0, balls_array.length - 1);
+        return getIndex(nums, 0, nums.length - 1);
     }
 
     private int getIndex(int[] array, int start, int end) {
         //the function to get index
         //Time complexity: O(log3(N))
+        //time complexity is as same as the ones when you divide them by two
+        //keep the sizes of first and second are same, ie, n and the third one equals or less than n
         if (start == end) {
             return start;
         }

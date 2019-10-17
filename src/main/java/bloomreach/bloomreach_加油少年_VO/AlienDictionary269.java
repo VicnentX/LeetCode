@@ -49,20 +49,20 @@ import java.util.*;
 /**
  * There may be multiple valid order of letters, return any one of them is fine.
  *
- * 先建立一个ininDegreeMap的map
+ * 先建立一个inDegreeMap的map
  *
  *
- * use ininDegreeMap map to track next-level letters gradually
+ * use inDegreeMap map to track next-level letters gradually
  */
 
 public class AlienDictionary269 {
     public String alienOrder(String[] words) {
-        // keep the char and all his next possible chars
+        // keep the char and all tis next possible chars
         Map<Character, Set<Character>> map=new HashMap<>();
-        // map of char and his in degree
+        // map of char and its in degree
         Map<Character, Integer> inDegreeMap=new HashMap<>();
-        String result="";
-        if(words==null || words.length==0) return result;
+        String ret="";
+        if(words==null || words.length==0) return ret;
         //find all possible key in the inDegreeMap
         for(String s: words){
             for(char c: s.toCharArray()){
@@ -89,13 +89,14 @@ public class AlienDictionary269 {
                 }
             }
         }
+        //bfs find the in degree = 0 gradually level by level
         Queue<Character> queue =new LinkedList<>();
         for(char c: inDegreeMap.keySet()){
             if(inDegreeMap.get(c)==0) queue.add(c);
         }
         while(!queue.isEmpty()){
             char c=queue.remove();
-            result += c;
+            ret += c;
             if(map.containsKey(c)){
                 for(char nextChar: map.get(c)){
                     inDegreeMap.put(nextChar,inDegreeMap.get(nextChar) - 1);
@@ -103,8 +104,8 @@ public class AlienDictionary269 {
                 }
             }
         }
-        // means there is some loop
-        if(result.length()!=inDegreeMap.size()) return "";
-        return result;
+        // means there is some loop so not all the letter are in the ret
+        if(ret.length()!=inDegreeMap.size()) return "";
+        return ret;
     }
 }
