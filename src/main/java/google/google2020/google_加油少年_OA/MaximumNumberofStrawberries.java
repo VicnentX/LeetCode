@@ -38,9 +38,10 @@ public class MaximumNumberofStrawberries {
      * @return
      */
 
-    int max = 0;
+    int max;
 
     public int maximumStrawBerriesPicked(int[] nums, final int MAX_SUM) {
+        max = 0;
         dfs(0, false, 0, nums, MAX_SUM);
         return max;
     }
@@ -60,10 +61,35 @@ public class MaximumNumberofStrawberries {
      *  这题的dp解法
      */
     public int maximumStrawBerriesPickedDP(int[] nums, final int MAX_SUM) {
-        return 0;
+
+        //dp【i][j] 表示第i个可以拿可以不拿的情况下（能取到的就是0-i index之间的任何） 我包里 有的数量 《= j
+
+        final int N = nums.length;
+
+        int[][] dp = new int[N + 2][MAX_SUM + 1];
+
+        for (int i = 0; i < N; ++i) {
+            int value = nums[i];
+            /**
+             * 二位数组第二层循环 正过来倒过来是一样的 就只有节约空间的时候 正过来代表complete背包 反过来代表
+             */
+            for (int j = MAX_SUM; j >= 0; --j) {
+                //不拿和拿两种情况
+                //不拿的话就等于前一个可以取的最大值
+                //拿的话前面那个就不能拿 所以= dp[i - 2][j - value] + value
+
+                if (j >= value) {
+                    dp[i + 2][j] = Math.max(dp[i + 1][j], dp[i][j - value] + value);
+                }
+                //如果当前的值比我包的体积大 就不能选这个 就只能用前一个的dp
+                else {
+                    dp[i + 2][j] = dp[i + 1][j];
+                }
+            }
+        }
+        //这里应该把0-maxSum都扫一遍得到最大的值
+        return dp[N + 1][MAX_SUM];
     }
-
-
 
     /*
 
@@ -72,6 +98,18 @@ public class MaximumNumberofStrawberries {
     而是挑的元素的个数 《= limit。怎么做DP？
      */
 
+    public int getMaxStrawberriesWithLimitBags(int[] nums, int limit) {
+//        final int N = nums.length;
+//
+//        int[][] dp = new int[N + 2][limit + 1];
+//
+//        for (int i = 0; i < N; ++i) {
+//            int value = nums[i];
+//            for ()
+//        }
+        return 0;
+    }
+
 
 
     public static void main(String[] args) {
@@ -79,6 +117,27 @@ public class MaximumNumberofStrawberries {
         int maxSum = maximumNumberofStrawberries.maximumStrawBerriesPicked
                 (new int[] {1,3,2,9,5,7,40,11}, 23);
         System.out.println(maxSum);
+
+        //21
+        maxSum = maximumNumberofStrawberries.maximumStrawBerriesPicked
+                (new int[] {1,45,45,9,45,56,40,11}, 23);
+        System.out.println(maxSum);
+
+        //21
+        maxSum = maximumNumberofStrawberries.maximumStrawBerriesPickedDP
+                (new int[] {1,45,45,9,45,56,40,11}, 23);
+        System.out.println(maxSum);
+
+        //6
+        maxSum = maximumNumberofStrawberries.maximumStrawBerriesPickedDP
+                (new int[] {2,0,0,2,0,2}, 6);
+        System.out.println(maxSum);
+
+        //3
+        maxSum = maximumNumberofStrawberries.maximumStrawBerriesPickedDP
+                (new int[] {0,0,2,3,0}, 6);
+        System.out.println(maxSum);
+
     }
 
 }

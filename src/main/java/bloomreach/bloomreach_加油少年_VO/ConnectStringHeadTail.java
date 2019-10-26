@@ -2,13 +2,10 @@ package bloomreach.bloomreach_加油少年_VO;
 
 /*
 电面：给一些string，将首尾字符相同的串联，求最大可串连得字符串个数。follo up：需要返回最长的字符串。
-          举例： abc，cde，efg，这三个可以串联起来。
+          举例： abc，cde，efg，ctttc, 这三个可以串联起来。
  */
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  *assume of the letter is low case
@@ -63,11 +60,37 @@ public class ConnectStringHeadTail {
 
     /*
     这个是姐夫的方法 我其实对于怎么去重还是没明白 先写在这里吧
-    最后一个例子结果应该是4 但是stackoverflow了 说明还是没有解决这个问题
      */
+
+    /**
+     * 这里写一点姐夫的解释：
+     * memo是记录从某一个index出发的最长路径,
+     * -1 means not accessed before,
+     * 0 means 正在被访问中，
+     * 当我dfs碰到环了，就skip掉
+     * edges<前， list of 后>
+     *
+     */
+    private Map<Integer, Set<Integer>> edges;
+    private int[] memo;
+
     public int solve(String[] strs) {
+        buildGraph(strs);
+        dfsSearch(strs);
+
+        int ret = 0;
+        for (int i: memo) {
+            if (i > ret) ret = i;
+        }
+
+        return ret;
+    }
+
+    private void buildGraph(String[] strs) {
+        memo = new int[strs.length];
+        Arrays.fill(memo, -1);
+
         Map<Character, Set<Integer>> map = new HashMap<>();
-        //fill map of last char and all the index of string ending with this last char
         for (int i = 0; i < strs.length; ++i) {
             String s = strs[i];
             char lastChar = s.charAt(s.length() - 1);
@@ -77,52 +100,59 @@ public class ConnectStringHeadTail {
             map.get(lastChar).add(i);
         }
 
-        //ret map of index of string and value is a pair of max chains and it is visited or not
-        Map<Integer, Object[]> ret = new HashMap<>();
+        edges = new HashMap<>();
         for (int i = 0; i < strs.length; ++i) {
-            ret.put(i, new Object[]{1, false});
+            edges.put(i, new HashSet<>());
         }
-
         for (int i = 0; i < strs.length; ++i) {
-            if ((boolean)ret.get(i)[1]) { //visited
-                continue;
-            }
-            dfs(i, strs, ret, map);
-        }
-
-        //get the result
-        int maxChain = 0;
-        for (Object[] pair: ret.values()) {
-            if ((int)pair[0] > maxChain) {
-                maxChain = (int)pair[0];
-            }
-        }
-
-        return maxChain;
-    }
-
-    private int dfs(int index, String[] strs, Map<Integer, Object[]> ret, Map<Character, Set<Integer>> map) {
-        int max_path = 0;
-        String s = strs[index];
-        char firstChar = s.charAt(0);
-
-        if (map.containsKey(firstChar)) {
-            for (int n: map.get(firstChar)) {
-                if (n == index) {
-                    continue;
-                }
-                if ((boolean)ret.get(n)[1]) {
-                    max_path = Math.max(max_path, (int)ret.get(n)[0]);
-                } else {
-                    dfs(n, strs, ret, map);
-                    max_path = Math.max(max_path, (int)ret.get(n)[0]);
+            String s = strs[i];
+            char firstChar = s.charAt(0);
+            if (map.containsKey(firstChar)) {
+                for (int n: map.get(firstChar)) {
+                    if (n == i) continue;
+                    edges.get(n).add(i);
                 }
             }
         }
-        ret.put(index, new Object[] {1 + max_path, true});
-
-        return max_path;
     }
+
+    private void dfsSearch(String[] strs) {
+        for (int i = 0; i < strs.length; ++i) {
+            if (memo[i] == -1) {
+                System.out.println("Exploring from string: " + strs[i] + " ( index = " + i + " )");
+                helper(i);
+            }
+        }
+    }
+
+    private int helper(int index) {
+        if (memo[index] > 0) {
+            return memo[index];
+        }
+
+        memo[index] = 0;
+        for (int n: edges.get(index)) {
+            if (memo[n] == 0) continue;
+            else if (memo[n] == -1) {
+                int t = helper(n);
+                if (1 + t > memo[index]) {
+                    memo[index] = 1 + t;
+                }
+            } else {
+                int t = memo[n];
+                if (t + 1 > memo[index]) {
+                    memo[index] = t + 1;
+                }
+            }
+        }
+
+        if (memo[index] == 0) {
+            memo[index] = 1;
+        }
+
+        return memo[index];
+    }
+
 
 
     public static void main(String[] args) {
