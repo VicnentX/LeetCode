@@ -43,9 +43,7 @@ public class ListOfIndexOfDice {
         }
 
         List<String> ret = new ArrayList<>();
-
         dfs(map, target, 0, ret, new HashSet<Integer>(), "");
-
         return ret;
     }
 
@@ -53,6 +51,7 @@ public class ListOfIndexOfDice {
 
         if (i == target.length()) {
             ret.add(path);
+            return;
         }
 
         String cur = String.valueOf(target.charAt(i));

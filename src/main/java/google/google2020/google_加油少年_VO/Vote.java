@@ -16,15 +16,23 @@ package google.google2020.google_加油少年_VO;
 
  */
 
+/**
+ * clarification : what is the max size of the vote.
+ *                  what is the size of candidate
+ */
+
 import java.util.*;
 
 public class Vote {
+
+    //假设这个list的输入 是 名字 + 投票时间的pair
 
     public String getNameTop(String[][] list, List<String> target) {
         //sort
         Arrays.sort(list, (a,b) -> a[1].compareTo(b[1]));
 
-        Set<String> set = new TreeSet<>((a,b) -> b.compareTo(a)); // 1. 名字 2. 票数
+        Set<String> set = new TreeSet<>((a,b) -> b.compareTo(a)); // String = 票数 + 名字，所以排序的话就变成先按照票数在按照名字排序
+        //我的map就能找到set里面的元素 删掉 然后再把新的"票数+名字"放进去
         Map<String, Integer> map = new HashMap<>();  // 名字 -> 票数
         int i = 0;
 
@@ -46,17 +54,17 @@ public class Vote {
             if (map.size() >= target.size()) {
                 int index = 0;
                 for (String nameTimePair: set) {
-                    if (index == target.size()) {
-                        return time;
-                    }
                     String person = nameTimePair.split(" ")[1];
                     if (!person.equals(target.get(index))) {
                         break;
                     }
                     index++;
+                    //放在这个判断是因为下一次就没有了，进入不了for循环了。
+                    if (index == target.size() - 1) {
+                        return time;
+                    }
                 }
             }
-
             ++i;
         }
 

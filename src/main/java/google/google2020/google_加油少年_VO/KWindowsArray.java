@@ -13,7 +13,7 @@ import java.util.Deque;
 public class KWindowsArray {
     public int[] getMinElementArray(int[] nums, int k) {
         if (k > nums.length) {
-            System.out.println("Invalid: k is larger than nums length");
+            System.out.println("invalid: k is larger than nums length");
             return null;
         }
         final int N = nums.length;
@@ -26,8 +26,8 @@ public class KWindowsArray {
             while (!deque.isEmpty() && nums[deque.peekLast()] > nums[i]) {
                 deque.pollLast();
             }
-            //put it inside
-            deque.offer(i);
+            //input it inside
+            deque.add(i);
             if (i >= k - 1) {
                 ret[i - k + 1] = nums[deque.peek()];
             }

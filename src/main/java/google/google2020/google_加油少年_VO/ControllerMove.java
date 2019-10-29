@@ -16,6 +16,10 @@ package google.google2020.google_加油少年_VO;
 
 /**
  *  input is the score of every position in i round
+ *
+ *  这边要注意 我可以某一个点不得分 为了后面能得到更多的分
+ *
+ *
  */
 
 import java.util.ArrayList;

@@ -54,6 +54,7 @@ public class OptimizeWaterDistributioninaVillage1168 {
         for (int i = 0; i < pipes.length; ++i) {
             uf[i] = pipes[i];
         }
+        //管道的index是从1开始的 ，为超级源泉提供了0的位置
         for (int i = pipes.length; i < pipes.length + n; ++i) {
             uf[i] = new int[]{0, i - pipes.length + 1, wells[i - pipes.length]};
         }

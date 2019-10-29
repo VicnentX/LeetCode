@@ -37,7 +37,9 @@ public class IfSIsConcatenationOfSomeT {
         return false;
     }
 
-    // Fills Z array for given string str[]
+
+
+    // Fills Z array for given string str
     private int[] getZarr(String str) {
         int[] Z = new int[str.length()];
         int n = str.length();

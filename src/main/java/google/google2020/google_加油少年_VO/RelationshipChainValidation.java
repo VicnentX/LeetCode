@@ -157,6 +157,7 @@ public class RelationshipChainValidation {
 
     /**
      * 第三题有《= 的情况 个人感觉第二种dfs的方法稍加修改就能用了
+     * 加一个true， 一路过来都带有等号，那么circle的时候回到原来的点 是return true
      * @param args
      */
 

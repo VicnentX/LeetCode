@@ -28,6 +28,10 @@ n is odd.
 1 <= x <= n <= 100
  */
 
+/**
+ * 这题就是我的一个点把系统分成了最多三部分 我看有没有一个部分的值是大于一半的 有的话蓝方就能够获胜
+ */
+
 public class BinaryTreeColoringGame1145 {
 
     public class TreeNode {

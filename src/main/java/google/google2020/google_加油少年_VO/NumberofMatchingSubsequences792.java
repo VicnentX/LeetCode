@@ -29,14 +29,16 @@ public class NumberofMatchingSubsequences792 {
     public int numMatchingSubseq(String S, String[] words) {
         final int N = S.length();
         int[][] map = new int[26][N];
+        //O(26 * N) = O(N)
         for (int i = 0; i < 26; ++i) {
             Arrays.fill(map[i], -1);
         }
-
+        //O(N)
         for (int i = 0; i < N; ++i) {
             char cur = S.charAt(i);
             map[cur - 'a'][i] = i;
         }
+        //O(26 * N) = O(N)
         for (int i = 0; i < 26; ++i) {
             int pre = map[i][N - 1];
             for (int j = N - 2; j >= 0; --j) {
@@ -48,9 +50,11 @@ public class NumberofMatchingSubsequences792 {
             }
         }
 
+
         int ret = 0;
         //check word one by one
         OUT:
+        //O(total char of word sets)
         for (String word: words) {
             int index = 0;
             for (char c: word.toCharArray()) {

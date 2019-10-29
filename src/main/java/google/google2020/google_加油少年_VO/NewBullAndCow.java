@@ -18,7 +18,8 @@ return "AAAA"
 edge case：输入的 guess 含有不在 color set 里面的字母，个人是直接 raise exception 了
 
 follow up 是根据 return 值在最少次数内得到 answer，来不及code，大概就说了一下思路
-每次guess 都可以去掉一些完全不符合的错误答案这样，有点像 guess word 的做法，只不过这里的 return 值对位置的对应关系更弱
+每次guess 都可以去掉一些完全不符合的错误答案这样，有点像 guess word 的做法，
+只不过这里的 return 值对位置的对应关系更弱
 细节的实现来不及细想，给足够时间的话感觉还是可以做出来的
 
 
@@ -35,6 +36,7 @@ public class NewBullAndCow {
         final int N = answer.length();
         Map<Character, Integer> charWrongPosCnt = new HashMap<>();
         StringBuilder sb = new StringBuilder();
+
         //first for loop to get cnt of A
         for (int i = 0; i < N; ++i) {
             if (answer.charAt(i) == guess.charAt(i)) {
@@ -83,6 +85,7 @@ public class NewBullAndCow {
             if (ret.equals("AAAA")) {
                 return cnt;
             }
+            //size of set will reduce gradually
             for (String candidate: set) {
                 if (getABs(first, candidate).equals(ret)) {
                     nextSet.add(candidate);

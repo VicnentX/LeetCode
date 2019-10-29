@@ -1,5 +1,10 @@
 package google.google2020.google_加油少年_VO;
 
+
+/**
+ * 这个nums是sorted过的
+ */
+
 public class FindNNearestElementsInSortedList {
 
     public int[] findNElements(int[] nums, int inserted, int n) {
