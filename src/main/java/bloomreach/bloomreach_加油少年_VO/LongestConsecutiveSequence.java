@@ -84,6 +84,7 @@ public class LongestConsecutiveSequence {
         //search number one by one
         int max = 1;
         int curLen = 1;
+        //check from number 1 - M * N
         for (int i = 1; i < M * N; ++i) {
             if (isNeighbor(i, i + 1, nodePositionMap)) {
                 curLen++;

@@ -17,7 +17,7 @@ public class ConnectStringHeadTail {
     private static int longest = 0;
     private static String longestString = "";
 
-    public void getLongestStringcChainAndCnt(String[] strings) {
+    public int getLongestStringcChainAndCnt(String[] strings) {
         //map of starting letter and this corresponding string
         Map<Character, Set<String>> map = new HashMap<>();
         for (String s: strings) {
@@ -35,6 +35,8 @@ public class ConnectStringHeadTail {
             dfs(1, s, visited, map);
             visited.remove(s);
         }
+
+        return deepLevel;
     }
 
     private void dfs(int level, String cur, Set<String> visited, final Map<Character, Set<String>> map) {

@@ -142,6 +142,6 @@ public class RandomChooseKFromN {
 
     public static void main(String[] args) {
         RandomChooseKFromN randomChooseKFromN = new RandomChooseKFromN();
-        randomChooseKFromN.getRandomKFromN(2,5);
+        randomChooseKFromN.getRandomKFromN(5,9);
     }
 }
