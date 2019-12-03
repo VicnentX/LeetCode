@@ -47,6 +47,7 @@ public class AnyReachablePathInMaze {
             }
         }
 
+        //if i am here, there is no solution for this case
         visited[i][j] = 0;
         System.out.println("IMPOSSIBLE");
         return new ArrayList<>();

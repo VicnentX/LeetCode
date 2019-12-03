@@ -27,6 +27,7 @@ import java.util.List;
 public class FollowTrraffic {
     public List<double[]> getSegamentTrafficInfo(int[][] traffics) {
         final int N = traffics.length;
+        //时间点 + 开始或者结束 + 车速
         int[][] timePoints = new int[2 * N][3];
         int index = 0;
         for (int[] traffic: traffics) {

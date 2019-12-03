@@ -20,7 +20,8 @@ public class CountBST {
         }
     }
 
-    //ret = num + frequency
+    //ret = num AND frequency
+    //assume -1 is not in the tree
     int[] ret = new int[] {-1, 0};
     int cnt = 0;
     int pre = -1;

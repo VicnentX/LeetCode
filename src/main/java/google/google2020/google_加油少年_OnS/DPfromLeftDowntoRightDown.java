@@ -4,6 +4,11 @@ package google.google2020.google_加油少年_OnS;
 貌似是个高频题，之前地理看到过。
 给了2d grid的宽度和高度， 找从左下到右下有几种方法，
 规定只能往右，右上，右下三个方向走。 follow up能不能优化空间。
+
+ */
+
+/**
+ * 我的做法相当于多放了两个在各自在上面和下面 这两个dp的值始终为0
  */
 
 public class DPfromLeftDowntoRightDown {

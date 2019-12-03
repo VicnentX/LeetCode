@@ -49,6 +49,7 @@ public class CarFleet853 {
         for (int i = 0; i < N; ++i) {
             carInfo[i] = new double[] {position[i], (target - position[i]) * 1.0 / speed[i]};
         }
+        //由远及近
         Arrays.sort(carInfo, (a,b) -> Double.compare(b[0], a[0]));
         double ahead = carInfo[0][1];
         int fleet = 1;

@@ -39,6 +39,7 @@ public class BuyPainting {
     // 然后从尾巴算起取n的quality最小的和是多少，然后不用存下来，直接算一下local的最优解
     public double buyN(int[][] paintings, int n) {
         final int N = paintings.length;
+        //pair store cost per quality and quality
         double[][] pairs = new double[N][2];
         for (int i = 0; i < N; ++i) {
             int[] painting = paintings[i];

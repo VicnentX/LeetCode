@@ -9,6 +9,10 @@ example:
 output: 3  ([2,1,3] is the longest subarray that has a sum <= 6)
  */
 
+/**
+ * assume there is no negative.
+ */
+
 import java.util.LinkedList;
 import java.util.Queue;
 

@@ -48,4 +48,10 @@ public class MaxChunksToMakeSorted769 {
         }
         return cnt;
     }
+
+    public static void main(String[] args) {
+        MaxChunksToMakeSorted769 maxChunksToMakeSorted769 = new MaxChunksToMakeSorted769();
+        //4
+        System.out.println(maxChunksToMakeSorted769.maxChunksToSorted(new int[] {1,0,2,3,4}));
+    }
 }

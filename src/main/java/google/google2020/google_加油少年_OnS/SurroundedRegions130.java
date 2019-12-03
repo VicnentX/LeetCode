@@ -31,6 +31,7 @@ public class SurroundedRegions130 {
     public int[][] solve(int[][] grid) {
         final int M = grid.length;
         final int N = grid[0].length;
+        //convert 0 to 2
         for (int i = 0; i < M; ++i) {
             for (int j = 0; j < N; ++j) {
                 if ((i == 0 || i == M - 1 || j == 0 || j == N - 1) && grid[i][j] == 0) {
