@@ -37,20 +37,19 @@ public class WordBreak139 {
 
     public boolean wordBreak(String s, Set<String> wordDict) {
 
-        //reach[j] means s from 0 - j-1 could be met
-        boolean[] reach = new boolean[s.length() + 1];
+        final int N = s.length();
+        //reach[i] mean all the characters from index 0 - i-1 matched
+        boolean[] reach = new boolean[N + 1];
         reach[0] = true;
-
-        for (int i = 1; i <= s.length(); ++i) {
+        for (int i = 1; i <= N; ++i) {
             for (int j = 0; j < i; ++j) {
-                if (reach[j] && wordDict.contains(s.substring(j, i))) {
+                if (reach[j] && wordDict.contains(s.substring(j,i))) {
                     reach[i] = true;
                     break;
                 }
             }
         }
-
-        return reach[s.length()];
+        return reach[N];
     }
 
     //考我的是要输出一个可能的解答，并且我得到的是输入中间是有空格的

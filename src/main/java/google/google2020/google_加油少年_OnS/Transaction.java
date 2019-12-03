@@ -17,9 +17,22 @@ queue也提了，说时间复杂度差不多，面试官认可，就让我写了
 但我估计我那个不太好的feedback是这个人给的。LC465
  */
 
+
+/**
+ * 上面提到的双指针我之前也使用了 但是比如 -6 3 3 5 -4 -1
+ * 这个例子用排序之后的方法做 结果是5 但是最优解答是4
+ *
+ */
+
 import java.util.*;
 
 public class Transaction {
+
+    /**
+     * 下面就是错误的例子
+     * @param personMoneyPair
+     * @return
+     */
     //assume all the amount of money and average is int
     public List<String> getTransactionHistory(Object[][] personMoneyPair) {
         final int N = personMoneyPair.length;

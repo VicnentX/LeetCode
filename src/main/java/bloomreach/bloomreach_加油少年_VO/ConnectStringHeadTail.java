@@ -65,7 +65,7 @@ public class ConnectStringHeadTail {
      */
 
     /**
-     * 这里写一点姐夫的解释：
+     * 这里写一点的解释：
      * memo是记录从某一个index出发的最长路径,
      * -1 means not accessed before,
      * 0 means 正在被访问中，

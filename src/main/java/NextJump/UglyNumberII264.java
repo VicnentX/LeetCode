@@ -41,7 +41,19 @@ import java.util.List;
  * Thanks for this author about this brilliant idea. Here is my java solution
  */
 
+
+/**
+ * We have an array k of first n ugly number. We only know, at the beginning, the first one, which is 1. Then
+ *
+ * k[1] = min( k[0]x2, k[0]x3, k[0]x5). The answer is k[0]x2. So we move 2's pointer to 1. Then we test:
+ *
+ * k[2] = min( k[1]x2, k[0]x3, k[0]x5). And so on. Be careful about the cases such as 6, in which we need to forward both pointers of 2 and 3.
+ *
+ * x here is multiplication.
+ */
+
 public class UglyNumberII264 {
+
     public int nthUglyNumber(int n) {
         if (n <= 0) return -1;
         int t2 = 0, t3 = 0, t5 = 0;

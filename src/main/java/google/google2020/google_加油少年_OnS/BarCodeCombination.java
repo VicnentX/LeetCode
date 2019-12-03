@@ -1,9 +1,15 @@
 package google.google2020.google_加油少年_OnS;
 
 /*
-第三题我的思路： 建立两个int[] white 和 black 长度都为50-google 1point3acres white[i] 和 black[i] 分别表示 第 i 位 涂成 white or black 的方法有多少种 white[0] = 1;black[0] = 0; white1 = 1;black1 = 1;. visit 1point3acres for more. white2 = 2;black2 = 2;.1point3acres网
+第三题我的思路：
+建立两个int[] white 和 black 长度都为50-google 1point3acres white[i] 和 black[i]
+分别表示 第 i 位 涂成 white or black 的方法有多少种 white[0] = 1;black[0] = 0; white1 = 1;black1 = 1;.
+visit 1point3acres for more. white2 = 2;black2 = 2;.1point3acres网
 
-white[i] = black[i-1]+black[i-2]+black[i-3]; black[i] = white[i-1]+white[i-2]+white[i-3]; 最后返回white[49]; 因为一个块（i）如果涂成白色的话， 从左向右数， 它要么是第一个白色，(i-1)是黑色 要么是第二个白色，（i-2）是黑色， （i-1）是白色. Waral 博客有更多文章, 要么是第三个白色，（i-3）是黑色，（i-2）(i-1)都是是白色
+white[i] = black[i-1]+black[i-2]+black[i-3]; black[i] = white[i-1]+white[i-2]+white[i-3];
+最后返回white[49]; 因为一个块（i）如果涂成白色的话，
+从左向右数， 它要么是第一个白色，(i-1)是黑色 要么是第二个白色，（i-2）是黑色， （i-1）是白色.
+Waral 博客有更多文章, 要么是第三个白色，（i-3）是黑色，（i-2）(i-1)都是是白色
 
 dp[j] 长度为j且两侧颜色相同。= dp[j - 2] + 2 * dp[j - 3] + dp[j - 4] + 2 * dp[j - 5] + dp[j - 6], dp1 = dp2 = 1, dp3 = 2
 
@@ -72,5 +78,7 @@ public class BarCodeCombination {
         System.out.println(barCodeCombination.solve(2));
         //14
         System.out.println(barCodeCombination.solve(4));
+        //
+        System.out.println(barCodeCombination.solve(14));
     }
 }

@@ -3,7 +3,10 @@ package google.google2020.google_加油少年_leetcode;
 /*
 There is a special keyboard with all keys in a single row.
 
-Given a string keyboard of length 26 indicating the layout of the keyboard (indexed from 0 to 25), initially your finger is at index 0. To type a character, you have to move your finger to the index of the desired character. The time taken to move your finger from index i to index j is |i - j|.
+Given a string keyboard of length 26 indicating the layout of the keyboard (indexed from 0 to 25),
+initially your finger is at index 0. To type a character,
+you have to move your finger to the index of the desired character.
+The time taken to move your finger from index i to index j is |i - j|.
 
 You want to type a string word. Write a function to calculate how much time it takes to type it with one finger.
 
@@ -41,6 +44,7 @@ public class SingleRowKeyboard1165 {
         for (int i = 0; i < 26; ++i) {
             map.put(keyboard.charAt(i), i);
         }
+        //get result
         for (char c: word.toCharArray()) {
             ret += Math.abs(map.get(c) - pre);
             pre = map.get(c);

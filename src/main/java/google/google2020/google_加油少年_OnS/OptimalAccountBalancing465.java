@@ -39,22 +39,53 @@ Person #2 gave person #0 $5.
 Therefore, person #1 only need to give person #0 $4, and all debt is settled.
  */
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class OptimalAccountBalancing465 {
-    //这题是用dfs做，我自己在 统一目录下面的transaction里面用的是sort的方法
+    //这题是用dfs做，
+
+    /**
+     * 我之前在Transaction。java里面用的方法是不对的 所以这边就不写了
+     * @param transactions
+     * @return
+     */
     public int minTransfers(int[][] transactions) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int[] t: transactions) {
             map.put(t[0], map.getOrDefault(t[0], 0) - t[2]);
             map.put(t[1], map.getOrDefault(t[1], 0) + t[2]);
         }
-        return dfs(0, new ArrayList<>(map.values()));
+        //remove 0s and remove x and -x pair
+
+        int cnt = 0;
+        Map<Integer, Integer> temp = new HashMap<>();
+
+        for (int value: map.values()) {
+            if (value == 0) continue;
+            if (temp.containsKey(-value)) {
+                temp.put(-value, temp.get(-value) - 1);
+                if (temp.get(-value) == 0) {
+                    temp.remove(-value);
+                }
+                cnt++;
+            } else {
+                temp.put(value, temp.getOrDefault(value, 0) + 1);
+            }
+        }
+
+        List<Integer> list = new ArrayList<>();
+
+        for(int value: temp.keySet()) {
+            int size = temp.get(value);
+            for (int i = 0; i < size; ++i) {
+                list.add(value);
+            }
+        }
+
+        return cnt + dfs(0, list);
     }
 
-    private int dfs(int start, ArrayList<Integer> list) {
+    private int dfs(int start, List<Integer> list) {
         while (start < list.size() && list.get(start) == 0) {
             start++;
         }
