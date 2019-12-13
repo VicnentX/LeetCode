@@ -25,49 +25,39 @@ where the largest sum among the two subarrays is only 18.
 
 public class SplitArrayLargestSum410 {
     public int splitArray(int[] nums, int m) {
-        int start = 0;
+        int start = Integer.MIN_VALUE;
         int end = 0;
-        for(int k : nums){
-            start = Math.max(start , k);
-            end += k;
+        for (int num: nums) {
+            start = Math.max(start, num);
+            end += num;
         }
-        //corner case
-        if(start == Integer.MAX_VALUE) return Integer.MAX_VALUE;
 
-        while(start + 1 < end){
+        while (start + 1 < end) {
             int mid = start + (end - start) / 2;
-            int required = 1;
-            int cur = 0;
-            for(int k : nums){
-                if(cur + k <= mid){
-                    cur += k;
-                }else{
-                    ++required;
-                    cur = k;
-                }
-            }
-            if(required <= m){
+            if (count(mid, nums) <= m) {
                 end = mid;
-            }else{
+            } else {
                 start = mid;
             }
         }
-        //!!!这边之前的错误是先检查end 这是不对的 应该先检查小的start；
-        int cur = 0;
-        int required = 1;
-        for(int k : nums){
-            if(cur + k <= start){
-                cur += k;
-            }else{
-                ++required;
-                cur = k;
+
+        if (count(start, nums) <= m) {
+            return start;
+        }
+        return end;
+    }
+
+    private int count(int target, int[] nums) {
+        int sum = 0;
+        int cnt = 0;
+        for (int num: nums) {
+            sum += num;
+            if (sum > target) {
+                cnt++;
+                sum = num;
             }
         }
-        if(required <= m){
-            return start;
-        }else{
-            return end;
-        }
+        return cnt + 1;
     }
 
     public static void main(String[] args){

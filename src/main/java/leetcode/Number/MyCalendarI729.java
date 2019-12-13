@@ -2,11 +2,11 @@ package leetcode.Number;
 
 import java.util.*;
 
-public class MyCalendar {
+public class MyCalendarI729 {
 
     TreeMap<Integer,Integer> calendar;
 
-    public MyCalendar() {
+    public MyCalendarI729() {
         calendar=new TreeMap<>();
     }
 
@@ -35,7 +35,7 @@ public class MyCalendar {
     }
 
     public static void main(String[] args){
-        MyCalendar mc=new MyCalendar();
+        MyCalendarI729 mc=new MyCalendarI729();
         System.out.println(mc.calendar);
         System.out.println(mc.book(10,20));
         System.out.println(mc.book(15,25));
@@ -46,7 +46,7 @@ public class MyCalendar {
 }
 
 /**
- * Your MyCalendar object will be instantiated and called as such:
- * MyCalendar obj = new MyCalendar();
+ * Your MyCalendarI729 object will be instantiated and called as such:
+ * MyCalendarI729 obj = new MyCalendarI729();
  * boolean param_1 = obj.book(start,end);
  */
