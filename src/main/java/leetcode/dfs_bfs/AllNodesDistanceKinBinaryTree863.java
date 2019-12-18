@@ -43,6 +43,20 @@ The target node is a node in the tree.
 
 import java.util.*;
 public class AllNodesDistanceKinBinaryTree863 {
+
+    /**
+     * //1. build a undirected graph using treenodes as vertices,
+     * and the parent-child relation as edges
+     * //2. do BFS with source vertice (target) to
+     * find all vertices with distance K to it.
+     * class Solution {
+     *     Map<TreeNode, List<TreeNode>> map = new HashMap();
+     * //here can also use Map<TreeNode, TreeNode> to
+     * only store the child - parent mapping,
+     * since parent-child mapping is inherent in the tree structure
+     */
+
+
     public class TreeNode {
         int val;
         TreeNode left , right;

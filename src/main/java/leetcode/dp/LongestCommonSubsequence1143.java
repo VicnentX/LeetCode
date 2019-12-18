@@ -34,6 +34,9 @@ The input strings consist of lowercase English characters only.
  */
 
 
+import java.net.StandardSocketOptions;
+import java.util.*;
+
 /**
  * Intuition
  * LCS is a well-known problem, and there are similar problems here:
@@ -97,9 +100,131 @@ public class LongestCommonSubsequence1143 {
         return dp[m][n];
     }
 
+
+    /*
+    // Hey Yibei
+
+    I use a 2D String array to store one of the longest subsequence between two substring
+    (PS: this is only store one of them. If the question need to get all the possible longest common subsequences,
+    we can use a 2D array of List<String> ,ie. the element in the 2D array is List<String>)
+
+    so everytime I get what dp[i][j] is, I will update preString[i][j] accordingly. That makes sense, right?!
+
+    then the result should be preString[m][n]
+
+     */
+
+    public String longestCommonSubsequenceString(String s1, String s2) {
+        int m = s1.length();
+        int n = s2.length();
+        String[][] preString = new String[m + 1][n + 1];
+        for(String[] row: preString) {
+            Arrays.fill(row, "");
+        }
+
+        for (int i = 0 ; i <= m ; ++i) {
+            for (int j = 0 ; j <= n ; ++j) {
+                if (i == 0 || j == 0) {
+                    //do nothing
+                } else if (s1.charAt(i - 1) == s2.charAt(j - 1)){
+                    preString[i][j] = preString[i - 1][j - 1] + s1.charAt(i - 1);
+                } else {
+                    preString[i][j] = preString[i - 1][j].length() > preString[i][j - 1].length() ?
+                            preString[i - 1][j] : preString[i][j - 1];
+                }
+            }
+        }
+        return preString[m][n];
+    }
+
+
+    /*
+    dfs is optional method but it is not efficient
+     */
+    String retDfs = "";
+    public String lcsDfs(String s, String t) {
+        dfs(0, 0, s, t, "");
+        return retDfs;
+    }
+
+    private void dfs(int i, int j, String s, String t, String cur) {
+        if (i == s.length() || j == t.length()) {
+            if (cur.length() > retDfs.length()) {
+                retDfs = cur;
+            }
+            return;
+        }
+
+        if (s.charAt(i) == t.charAt(j)) {
+            dfs(i + 1, j + 1, s, t, cur + s.charAt(i));
+        } else {
+            dfs(i + 1, j, s, t, cur);
+            dfs(i, j + 1, s, t, cur);
+        }
+    }
+
+    /*
+    this is output all the possible LCS
+
+    here I use hashset since lcs[i][j - 1] and lcs[i - 1][j] will have some overlapping
+     */
+    public Set<String> lcsAllPossibleString(String s, String t) {
+        int m = s.length();
+        int n = t.length();
+        Set<String>[][] lcs = new HashSet[m + 1][n + 1];
+        for(Set<String>[] rows: lcs) {
+            Arrays.fill(rows, new HashSet<>(Arrays.asList("")));
+        }
+
+        for (int i = 0; i <= m; ++i) {
+            for (int j = 0; j <= n; ++j) {
+                if (i == 0 || j == 0) {
+                    //do nothing
+                } else if (s.charAt(i - 1) == t.charAt(j - 1)){
+                    lcs[i][j] = buildNewArray(lcs[i - 1][j - 1], s.charAt(i - 1));
+                } else {
+                    if (lcs[i - 1][j].iterator().next().length() > lcs[i][j - 1].iterator().next().length()) {
+                        lcs[i][j] = new HashSet<>(lcs[i - 1][j]);
+                    } else if (lcs[i - 1][j].iterator().next().length() < lcs[i][j - 1].iterator().next().length()) {
+                        lcs[i][j] = new HashSet<>(lcs[i][j - 1]);
+                    } else {
+                        lcs[i][j] = new HashSet<>();
+                        lcs[i][j].addAll(new HashSet<>(lcs[i - 1][j]));
+                        if (lcs[i][j - 1].iterator().next().length() != 0) {
+                            lcs[i][j].addAll(new HashSet<>(lcs[i][j - 1]));
+                        }
+                    }
+                }
+            }
+        }
+
+        return lcs[m][n];
+    }
+
+    private Set<String> buildNewArray(Set<String> array, char c) {
+        Set<String> ret = new HashSet<>();
+        for(String pre: array) {
+            ret.add(pre + c);
+        }
+        return ret;
+    }
+
+
     public static void main(String[] args) {
         LongestCommonSubsequence1143 lc = new LongestCommonSubsequence1143();
         System.out.println("the longest common subsequence length is  : ");
         System.out.println(lc.longestCommonSubsequence("dasdajgfjgjd;kjljklj", "dasfdafahgdffgljkjlk;jk"));
+
+        System.out.println("the longest common subsequence length is  : ");
+        System.out.println(lc.longestCommonSubsequenceString("hello worlaaad", "woddddrld champion"));
+
+        System.out.println("the longest common subsequence length is  : ");
+        System.out.println(lc.lcsDfs("hello worlaaad", "woddddrld champion"));
+
+        System.out.println("the longest common subsequence length is  : ");
+        Set<String> ret = lc.lcsAllPossibleString("hello worlaaad", "woddddrld champion");
+        for(String s: ret) {
+            System.out.println(s);
+        }
     }
 }
