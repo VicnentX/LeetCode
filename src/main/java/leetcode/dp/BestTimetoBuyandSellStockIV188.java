@@ -53,8 +53,40 @@ public class BestTimetoBuyandSellStockIV188 {
         return dp[k];
     }
 
-    public static void main (String[] args) {
+    //这里我写一个比较慢的方法dfs
+
+    private int ret = 0;
+
+    public int maxProfitDFS(int k, int[] prices) {
+        // index, can/cannot buy, buyPrice, prices, # of transaction done, max #, accumulation profit
+        dfs(0, true, -1, prices, 0, k, 0);
+        return ret;
+    }
+
+    private void dfs(int i, boolean canBuy, int buyPrice, int[] prices, int cnt, int k, int sum) {
+        if (cnt == k || i == prices.length) {
+            ret = Math.max(ret, sum);
+            return;
+        }
+
+        if (canBuy) {
+            //buy
+            dfs(i + 1, false, prices[i], prices, cnt, k, sum - prices[i]);
+            //not buy
+            dfs(i + 1, canBuy, buyPrice, prices, cnt, k, sum);
+        } else {
+            //sell if current > buyPrice
+            if (prices[i] > buyPrice) {
+                dfs(i + 1, true, -1, prices, cnt + 1, k, sum + prices[i]);
+            }
+            //not sell
+            dfs(i + 1, canBuy, buyPrice, prices, cnt, k, sum);
+        }
+    }
+
+   public static void main (String[] args) {
         BestTimetoBuyandSellStockIV188 bt = new BestTimetoBuyandSellStockIV188();
         System.out.println(bt.maxProfit(2 , new int[] {3,2,6,5,0,3}));
+        System.out.println(bt.maxProfitDFS(2 , new int[] {3,2,6,5,0,3}));
     }
 }
