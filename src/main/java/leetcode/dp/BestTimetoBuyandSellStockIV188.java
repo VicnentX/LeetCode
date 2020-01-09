@@ -84,9 +84,40 @@ public class BestTimetoBuyandSellStockIV188 {
         }
     }
 
-   public static void main (String[] args) {
+    //dfs + memo
+    public int maxProfitDFSMem(int k, int[] prices) {
+        int[][] dp = new int[prices.length][k + 1];
+        for (int[] row: dp) {
+            Arrays.fill(row, -1);
+        }
+        return dfsMem(prices, 0, k, dp, prices.length);
+    }
+
+    private int dfsMem(int[] prices, int i, int k, int[][] dp, int n) {
+        if (i == n || k == 0) {
+            return 0;
+        }
+
+        if (dp[i][k] != -1) {
+            return dp[i][k];// 从i开始，最多做k次交易 得到的最大收益
+        }
+
+        int curMin = Integer.MAX_VALUE;
+        dp[i][k] = 0;
+        for (int j = i; j < n; ++j) {
+            curMin = Math.min(curMin, prices[j]);
+            if (prices[j] > curMin) {
+                dp[i][k] = Math.max(dp[i][k], prices[j] - curMin + dfsMem(prices, j + 1, k - 1, dp, n));
+            }
+        }
+        return dp[i][k];
+    }
+
+    public static void main (String[] args) {
         BestTimetoBuyandSellStockIV188 bt = new BestTimetoBuyandSellStockIV188();
+        //7
         System.out.println(bt.maxProfit(2 , new int[] {3,2,6,5,0,3}));
         System.out.println(bt.maxProfitDFS(2 , new int[] {3,2,6,5,0,3}));
+        System.out.println(bt.maxProfitDFSMem(2 , new int[] {3,2,6,5,0,3}));
     }
 }
