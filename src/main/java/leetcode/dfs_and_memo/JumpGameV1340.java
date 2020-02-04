@@ -49,27 +49,40 @@ Constraints:
  */
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JumpGameV1340 {
+    //key is the start point, value is max of # of indices could be reached
+    private Map<Integer, Integer> map = new HashMap<>();
+    private int ret = 1;
+
     public int maxJumps(int[] nums, int d) {
         int n = nums.length;
-        int[] dp = new int[n];
-        Arrays.fill(dp, 1);
-
-        for (int step = 1; step <= d; ++step) {
-            for (int i = 0; i < n; ++i) {
-                //left
-                if (i - step >= 0 && nums[i - step] < nums[i]) dp[i] = Math.max(dp[i], 1 + dp[i - step]);
-                //right
-                if (i + step < n && nums[i + step] < nums[i]) dp[i] = Math.max(dp[i], 1 + dp[i + step]);
-            }
+        for(int i = 0; i < n; ++i) {
+            dfs(i, n, d, nums, map);
         }
-
-        int ret = 1;
-        for (int i = 0; i < n; ++i) {
-            ret = Math.max(ret, dp[i]);
-        }
-
         return ret;
+    }
+
+    private int dfs(int i, int n, int d, int[] nums, Map<Integer, Integer> map) {
+        if (map.containsKey(i)) {
+            return map.get(i);
+        }
+
+        int tempRet = 1;
+
+        for (int j = 1; j <= d && i - j >= 0; ++j) {
+            if (nums[i - j] >= nums[i]) break;
+            tempRet = Math.max(tempRet, 1 + dfs(i - j, n, d, nums, map));
+        }
+        for (int j = 1; j <= d && i + j < n; ++j) {
+            if (nums[i + j] >= nums[i]) break;
+            tempRet = Math.max(tempRet, 1 + dfs(i + j, n, d, nums, map));
+        }
+
+        map.put(i, tempRet);
+        ret = Math.max(ret, tempRet);
+        return tempRet;
     }
 }

@@ -46,69 +46,94 @@ Constraints:
 1 <= d <= 10
  */
 
+
+/**
+ * Explanation
+ * dfs help find the the minimum difficulty
+ * if start work at ith job with d days left.
+ *
+ * If d = 1, only one day left, we have to do all jobs,
+ * return the maximum difficulty of jobs.
+ *
+ *
+ * Complexity
+ * Time O(nnd)
+ * Space O(nd)
+ */
+
 import java.util.Arrays;
 
 public class MinimumDifficultyofaJobSchedule1335 {
-    public int minDifficulty(int[] jobDifficulty, int d) {
+    public int minDifficultyDFSMEM(int[] jobDifficulty, int d) {
         int n = jobDifficulty.length;
         if (n < d) return -1;
-        int arraySum = Arrays.stream(jobDifficulty).sum();
-        //dp就是还剩多少工作要做，剩余多少天，
-        int[][] dp = new int[n + 1][d + 1];
-        for (int i = 0; i <= n; ++i) {
-            for (int j = 0; j <= d; ++j) {
-                if (i <= d) {
-                    dp[i][j] = -1;
-                } else {
-                    dp[i][j] = arraySum;
+        int[][] dp = new int[n][d + 1];
+        for (int[] rows: dp) {
+            Arrays.fill(rows, -1);
+        }
+        return dfs(0, d, jobDifficulty, jobDifficulty.length, dp);
+    }
+
+    //dfs返回的是从第i个任务开始，并且只剩余d天的时候，最小的diffculty是多少
+    private int dfs(int i, int d, int[] jobDifficulty, int n, int[][] dp) {
+
+        if (dp[i][d] != -1) return dp[i][d];
+
+        if (d == 1) {
+            return dp[i][d] = Arrays.stream(jobDifficulty, i, n).max().getAsInt();
+        }
+
+        int ret = Integer.MAX_VALUE;
+        int maxd = 0;
+
+
+        //这里的maxd就相当于把i 到 index 当作一天，然后和后面的dfs加起来
+        for (int index = i; index < n - d + 1; ++index) {
+            maxd = Math.max(maxd, jobDifficulty[index]);
+            ret = Math.min(ret, maxd + dfs(index + 1, d - 1, jobDifficulty, n, dp));
+        }
+
+        return dp[i][d] = ret;
+    }
+
+    public int minDifficultyDP(int[] jobDifficulty, int d) {
+
+        int n=jobDifficulty.length;
+        int sum=0;
+        if(d>n)
+            return -1;
+
+        if(d==n)
+        {
+            for(int i=0;i<n;i++)
+                sum+=jobDifficulty[i];
+
+            return sum;
+
+        }
+
+        int dp[][]=new int[d][n];
+        dp[0][0]=jobDifficulty[0];
+
+        for(int j=1;j<n;j++)
+        {
+            dp[0][j]=Math.max(jobDifficulty[j],dp[0][j-1]);
+        }
+
+        for(int i=1;i<d;i++)
+        {
+            for(int j=i;j<n;j++)
+            {
+                int localMx=jobDifficulty[j];
+                dp[i][j]=Integer.MAX_VALUE;
+                for(int r=j;r>=i;r--)
+                {
+                    localMx=Math.max(localMx,jobDifficulty[r]);
+                    dp[i][j]=Math.min(dp[i][j],dp[i-1][r-1]+localMx);
+
                 }
             }
         }
-        return dfs(0, n, jobDifficulty, d, dp, jobDifficulty[0], 0);
-    }
-
-    private int dfs(int i, int n, int[] jobDifficulty, int d, int[][] dp, int tempMax, int sum) {
-
-        if (i == n && d == 0) {
-            dp[i][d] = 0;
-            return dp[i][d];
-        }
-
-        if (dp[i][d] != -1) {
-            return dp[i][d];
-        }
-
-        if (d == 0) {
-            dp[i][d] = Integer.MAX_VALUE;
-            return dp[i][d];
-        }
-
-        //一个是用新的一天，一个是继续用当天
-        sum += Math.min(dfs(i + 1, n, jobDifficulty, d - 1, dp, i + 1 == n ? Integer.MAX_VALUE : jobDifficulty[i + 1], sum + tempMax)
-                , dfs(i + 1, n, jobDifficulty, d, dp, Math.max(tempMax, jobDifficulty[i]), sum));
-
-        dp[i][d] = sum;
-        return dp[i][d];
-    }
-
-
-
-
-
-
-    private int globalMin = Integer.MAX_VALUE;
-
-    private void dfsWithoutMem(int i, int n, int[] jobDifficulty, int remainDay, int sum, int tempMax) {
-
-        if (i == n) {
-            globalMin = Math.min(globalMin, sum);
-            return;
-        }
-
-
-        if (n - i == remainDay) {
-            dfsWithoutMem(i + 1, n, jobDifficulty, remainDay - 1, sum + jobDifficulty[i], 0);
-        }
-        dfsWithoutMem(i + 1, n, jobDifficulty, remainDay, sum, Math.max(tempMax, jobDifficulty[i]));
+        return dp[d-1][n-1];
     }
 }
