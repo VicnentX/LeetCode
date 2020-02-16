@@ -52,6 +52,21 @@ public class WordBreak139 {
         return reach[N];
     }
 
+    public boolean wordBreak1(String s, List<String> wordDict) {
+        Set<String> set = new HashSet<>(wordDict);
+        int n = s.length();
+        boolean[] dp = new boolean[n];
+        for (int i = 0; i < n; ++i) {
+            for(int j = 0; j <= i; ++j) {
+                if ((j - 1 == -1 ? true : dp[j - 1]) && set.contains(s.substring(j, i + 1))) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[n - 1];
+    }
+
     //考我的是要输出一个可能的解答，并且我得到的是输入中间是有空格的
     //所以我应该先clarify一些问题：
         //比如dictionary里面是不是都是完整的次 会不会出现blue_h , at  这样的情况
