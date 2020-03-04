@@ -1,4 +1,4 @@
-package leetcode.concurrency;
+package leetcode.concurrency.concurrent;
 
 /**
  * 目标： 研究volatile的原子性操作

@@ -10,8 +10,6 @@ import static java.util.Arrays.*;
 
 public class Main {
 
-    private final static int SKIP_BIT = 16;
-
     public static void main(String[] args) {
 
 //        PriorityQueue<Object[]> heap = new PriorityQueue<>((a,b) -> (int)a[1] - (int)b[1]);
@@ -60,11 +58,11 @@ public class Main {
 //
 //        int[] array = new int[]{1,2,3,4,5,6,4,3,3,2,3,4,5,6};
 
-        int[] aaa = new int[] {1,2,3};
-        plusone(aaa);
-        for (int element: aaa) {
-            System.out.println(element);
-        }
+//        int[] aaa = new int[] {1,2,3};
+//        plusone(aaa);
+//        for (int element: aaa) {
+//            System.out.println(element);
+//        }
 
 
 
@@ -85,11 +83,23 @@ public class Main {
 //
 //        String s = String.join(" ", Arrays.copyOfRange(books, 0, 3));
 //        System.out.println(s);
+
+        String[] ss = new String[] {"", null, null};
+
+        String s = "bing bign bing";
+
+        String builder = "builder";
+
+
     }
 
     private static void plusone(int[] aaa) {
         for (int i = 0 ; i < aaa.length; ++i) {
             aaa[i] += 1;
         }
+    }
+
+    public void build (int i) {
+
     }
 }

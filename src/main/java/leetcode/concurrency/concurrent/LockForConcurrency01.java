@@ -1,4 +1,4 @@
-package leetcode.concurrency;
+package leetcode.concurrency.concurrent;
 
 /**
  * 目标： 加锁机制保证原子性 这个时候加不加volatile其实没所谓

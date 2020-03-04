@@ -1,4 +1,4 @@
-package leetcode.concurrency;
+package leetcode.concurrency.concurrent;
 
 
 /**
