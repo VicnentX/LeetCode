@@ -32,6 +32,9 @@ Note:
 S only consists of '0' and '1' characters.
  */
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class FlipStringtoMonotoneIncreasing926 {
     public int minFlipsMonoIncr(String s) {
         int n = s.length() + 2;
@@ -49,5 +52,31 @@ public class FlipStringtoMonotoneIncreasing926 {
             ret = Math.min(ret, left[i] + right[i + 1]);
         }
         return ret;
+    }
+
+    public int solve(String s) {
+        int n = s.length();
+        int[] zero = new int[n];
+        //initial
+        Arrays.fill(zero, Integer.MAX_VALUE);
+        int[] one = new int[n];
+        Arrays.fill(one, Integer.MAX_VALUE);
+        if (s.charAt(0) == '0') {
+            zero[0] = 0;
+            one[0] = 1;
+        } else {
+            zero[0] = 1;
+            one[0] = 0;
+        }
+        for (int i = 1; i < n; ++i) {
+            if (s.charAt(i) == '0') {
+                zero[i] = zero[i - 1];
+                one[i] = Math.min(zero[i - 1], one[i - 1]) + 1;
+            } else {
+                zero[i] = zero[i - 1] + 1;
+                one[i] = Math.min(one[i - 1], zero[i - 1]);
+            }
+        }
+        return Math.min(zero[n - 1], one[n - 1]);
     }
 }

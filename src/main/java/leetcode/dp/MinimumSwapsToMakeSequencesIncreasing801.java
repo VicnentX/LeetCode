@@ -22,8 +22,27 @@ A, B are arrays with the same length, and that length will be in the range [1, 1
 A[i], B[i] are integer values in the range [0, 2000].
  */
 
+import java.util.Arrays;
+
 public class MinimumSwapsToMakeSequencesIncreasing801 {
     public int minSwap(int[] a, int[] b) {
-        return 0;
+        int n = a.length;
+        int[] keep = new int[n];
+        Arrays.fill(keep, Integer.MAX_VALUE);
+        int[] swap = new int[n];
+        Arrays.fill(swap, Integer.MAX_VALUE);
+        keep[0] = 0;
+        swap[0] = 1;
+        for(int i = 1; i < n; ++i) {
+            if (a[i] > a[i - 1] && b[i] > b[i - 1]) {
+                keep[i] = keep[i - 1];
+                swap[i] = swap[i - 1] + 1;
+            }
+            if (a[i] > b[i - 1] && b[i] > a[i - 1]) {
+                keep[i] = Math.min(keep[i], swap[i - 1]);
+                swap[i] = Math.min(swap[i], keep[i - 1] + 1);
+            }
+        }
+        return Math.min(swap[n - 1], keep[n - 1]);
     }
 }
