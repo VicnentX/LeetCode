@@ -1,7 +1,5 @@
 package leetcode.Number;
 
-import com.sun.tools.classfile.Synthetic_attribute;
-
 import java.util.*;
 
 public class SimplifyPath {

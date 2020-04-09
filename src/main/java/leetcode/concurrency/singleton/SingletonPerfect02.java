@@ -12,4 +12,10 @@ public class SingletonPerfect02 {
     public static SingletonPerfect02 getInstance() {
         return Inner.INSTANCE;
     }
+
+    public static void main(String[] args) {
+        SingletonPerfect02 s1 = SingletonPerfect02.getInstance();
+        SingletonPerfect02 s2 = SingletonPerfect02.getInstance();
+        System.out.println(s1 == s2);
+    }
 }
